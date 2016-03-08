@@ -1,0 +1,205 @@
+body{
+    margin-left:0%;
+    margin-right:0%;
+    margin-top:0%;
+    margin-bottom:0%;
+    background-color:rgb(240,240,240);
+    font-family: "font";
+}
+
+@font-face {
+    font-family: "font";
+    src: url("../fonts/Raleway-Regular.ttf");
+}
+
+#header{
+    height:185px;
+    width:100%;
+    background-image: url('../img/header.jpg');
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+#content{
+    width:960px;
+    padding-top:15px;
+    padding-bottom:30px;
+    margin:auto;
+    background-color:white;
+    min-height: 500px;
+}
+
+
+    /******************************************************************************************************************/
+    /*                                              ACCUEIL                                                           */
+    /******************************************************************************************************************/
+
+
+
+    #content.accueil .ban-dial{
+        width:100%;
+        margin: 20px auto 20px;
+        background-color:#002267;
+        min-height:50px;
+        overflow: hidden;
+    }
+        #content.accueil .ban-dial .part{
+            width: 50%;
+            float: left;
+            height:380px;
+        }
+            #content.accueil .ban-dial .part .text{
+                text-align: center;
+                padding-top:10px;
+                color:white;
+                font-size:180%;
+                height:350px;
+                margin:none;
+            }
+                #content.accueil .ban-dial .part .text img{
+                    height:40px;
+                }
+                #content.accueil .ban-dial .part .text .container-input{
+                    padding-top:10px;
+                    padding-bottom:10px;
+                }
+                    #content.accueil .ban-dial .part .text .container-input input{
+                        width:80%;
+                        background-color:silver;
+                        border:1px solid gray;
+                        font-size:25px;
+                        text-indent: 38px;
+                        font-family: "font";
+                        padding: 3px 0px;
+                        background-repeat:no-repeat;
+                        background-position: 4px center;
+                    }
+                        #content.accueil .ban-dial .part .text .container-input input.pseudo{
+                            background-image: url("../img/accueil/pseudo.png");
+                        }
+                        #content.accueil .ban-dial .part .text .container-input input.email{
+                            background-image: url("../img/accueil/email.png");
+                        }
+                        #content.accueil .ban-dial .part .text .container-input input.password{
+                            background-image: url("../img/accueil/password.png");
+                        }
+            #content.accueil .ban-dial .part .bouton{
+                text-align: center;
+                padding:10px;
+                background-color:#f8c80d;
+                color:black;
+                text-transform: uppercase;
+                display: block;
+                border:0px solid transparent;
+                width:100%;
+                cursor: pointer;
+                margin-top:1px;
+            }
+            #content.accueil .ban-dial .part.photo{
+                height:400px;
+                background-image: url('../img/accueil/photo.jpg');
+                background-repeat:no-repeat;
+                background-position: center;
+            }
+
+
+
+    /******************************************************************************************************************/
+    /*                                              CHOIX MEMBRE                                                      */
+    /******************************************************************************************************************/
+    #content.choix-membre{
+
+    }
+        #content.choix-membre .filters{
+
+        }
+            #content.choix-membre .filters .part{
+                width:50%;
+                float: left;
+                text-align: center;
+            }
+                #content.choix-membre .filters .part .title{
+                    font-size: 190%;
+                    margin-top: 15px;
+                    text-transform: uppercase;
+                    margin-bottom: 15px;
+                }
+                #content.choix-membre .filters .part select{
+                    width: 50%;
+                    background-color:#dedede ;
+                    padding:5px;
+                    font-family: "font";
+                    border:none;
+                    border-radius: 4px;
+                }
+        #content.choix-membre .people{
+            padding-top:30px;
+            padding-bottom: 50px;
+            user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -webkit-user-select: none;
+        }
+            #content.choix-membre .people .part{
+                width:50%;
+                float: left;
+                padding-top:25px;
+            }
+                #content.choix-membre .people .part .in{
+                    width: 90%;
+                    margin:auto;
+                    background-color:#dadada;
+                    padding:5px;
+                    overflow: hidden;
+                }
+                    #content.choix-membre .people .part .in .top{
+                        overflow: hidden;
+                    }
+                        #content.choix-membre .people .part .in .photo{
+                            width:30%;
+                            float:left;
+                            text-align: center;
+                        }
+                        #content.choix-membre .people .part .in .nom{
+                            width: 50%;
+                            float:left;
+                            font-size:30px;
+                        }
+                        #content.choix-membre .people .part .in .ville{
+                            width: 20%;
+                            float:left;
+                            text-transform: uppercase;
+                        }
+                    #content.choix-membre .people .part .in .villes{
+                        background-image: url("../img/choix_membre/map.png");
+                        background-repeat: no-repeat;
+                        background-size: auto 90%;
+                        background-position: 5px center;
+                        float: left;
+                        padding:15px 0;
+                        padding-left:60px;
+                    }
+                        #content.choix-membre .people .part .in .villes span{
+                            background-color:white;
+                            padding-left: 15px;
+                            padding-right: 5px;
+                            border-radius: 3px;
+                            border-bottom-left-radius: 10px;
+                            border-top-left-radius: 10px;
+                            background-image: url("../img/choix_membre/icone_villes.png");
+                            background-repeat: no-repeat;
+                            background-position: 5px center;
+                            border:1px solid silver;
+                        }
+                #content.choix-membre .people .part .lien{
+                    width:90%;
+                    margin:auto;
+                    text-align: center;
+                    background-color:#002267;
+                    display: block;
+                    padding:5px;
+                    color:white;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    padding-top:10px;
+                    padding-bottom:10px;
+                }
