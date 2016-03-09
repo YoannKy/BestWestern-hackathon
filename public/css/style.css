@@ -20,14 +20,13 @@ body{
     background-position: center top;
 }
 #content{
-    width:960px;
     padding-top:15px;
     padding-bottom:30px;
     margin:auto;
     background-color:white;
-    min-height: 500px;
+    height: auto;
+    position: absolute;
 }
-
 
     /******************************************************************************************************************/
     /*                                              ACCUEIL                                                           */
