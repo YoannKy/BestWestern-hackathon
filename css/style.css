@@ -53,7 +53,7 @@ body{
                 color:white;
                 font-size:180%;
                 height:350px;
-                margin:none;
+                margin:0;
             }
                 #content.accueil .ban-dial .part .text img{
                     height:40px;
@@ -376,3 +376,260 @@ body{
                     background-position: 5px center;
                     border:1px solid silver;
                 }
+
+    /******************************************************************************************************************/
+    /*                                              DISCUSSION                                                        */
+    /******************************************************************************************************************/
+    #content.compte{
+
+    }
+        #content.compte .title{
+            font-size: 40px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        #content.compte .informations{
+            background-color: #dadada;
+            overflow: hidden;
+            width:95%;
+            margin:auto;
+        }
+            #content.compte .informations .part{
+                float: left;
+                width:50%;
+            }
+                #content.compte .informations .part.left{
+                    width:46%;
+                    padding:2%;
+                    padding-right: 1.8%;
+                }
+                    #content.compte .informations .part.left .top{
+                        overflow: hidden;
+                        width:100%;
+                    }
+                        #content.compte .informations .part.left .top .parts{
+                            float: left;
+                        }
+                            #content.compte .informations .part.left .parts.image{
+                                width:20%
+                            }
+                            #content.compte .informations .part.left .top .parts.nom{
+                                width:60%;
+                                font-size:30px;
+                            }
+                            #content.compte .informations .part.left .top .parts.ville{
+                                width:20%;
+                                font-size:15px;
+                                text-transform: uppercase;
+                            }
+                    #content.compte .informations .part.left .bottom{
+                        background-image: url("../img/choix_membre/map.png");
+                        background-repeat: no-repeat;
+                        background-size: 40px auto;
+                        background-position: 5px center;
+                        float: left;
+                        padding:15px 0;
+                        padding-left:60px;
+                        margin-top:15px;
+                        line-height: 25px;
+                    }
+                        #content.compte .informations .part.left .bottom span{
+                            background-color:white;
+                            padding-left: 15px;
+                            padding-right: 5px;
+                            border-radius: 3px;
+                            border-bottom-left-radius: 10px;
+                            border-top-left-radius: 10px;
+                            background-image: url("../img/choix_membre/icone_villes.png");
+                            background-repeat: no-repeat;
+                            background-position: 5px center;
+                            border:1px solid silver;
+                        }
+                #content.compte .informations .part.right{
+                    border-left:1px solid silver;
+                }
+                    #content.compte .informations .part.right .title-part{
+                        text-align: left;
+                        font-size:120%;
+                        padding:10px;
+                    }
+                    #content.compte .informations .part.right .bottom{
+                        overflow: hidden;
+                    }
+                        #content.compte .informations .part.right .bottom .left{
+                            float: left;
+                            width:40%;
+                            text-align: center;
+                        }
+                            #content.compte .informations .part.right .bottom .left img{
+                                width:80%;
+                            }
+                        #content.compte .informations .part.right .bottom .right{
+                            float: left;
+                            width:60%;
+                        }
+                            #content.compte .informations .part.right .bottom .right .points{
+                                font-size:80px;
+                                height:150px;
+                            }
+                                #content.compte .informations .part.right .bottom .right .points span{
+                                    font-size:13px;
+                                }
+                            #content.compte .informations .part.right .bottom .right .bouton{
+                                background-color:#002267;
+                                padding:10px;
+                                color:white;
+                                display: block;
+                                text-decoration: none;
+                            }
+                                #content.compte .informations .part.right .bottom .right .bouton:hover{
+                                    background-color: #214690;
+                                }
+        #content.compte .conv-lots{
+            overflow: hidden;
+            width:95%;
+            margin:20px auto 0;
+        }
+            #content.compte .conv-lots .part{
+                float: left;
+                width:50%;
+                overflow: hidden;
+            }
+                #content.compte .conv-lots .part .convers{
+                    float: left;
+                    width:95%;
+                }
+                    #content.compte .conv-lots .part .convers{
+                        overflow: hidden;
+                    }
+                        #content.compte .conv-lots .part .convers .nb-message{
+                            background-color: #606467;
+                            color:white;
+                            padding:10px;
+                        }
+                        #content.compte .conv-lots .part .convers .contenu{
+                            background-color:#dadada;
+                            padding:10px;
+                            overflow: hidden;
+                        }
+                            #content.compte .conv-lots .part .convers .contenu .left{
+                                float:left;
+                                width:48%;
+                                margin-right:4%;
+                            }
+                                #content.compte .conv-lots .part .convers .contenu .left .etat{
+                                    padding:10px;
+                                    color:white;
+                                    font-size:12px;
+                                    text-align: center;
+                                    background-color:#dc3232;
+                                }
+                                #content.compte .conv-lots .part .convers .contenu .left .apercu{
+                                    background-color: white;
+                                    color:black;
+                                    padding:5px;
+                                    font-style: italic;
+                                    font-size:11px;
+                                    text-align: center;
+                                    margin-top:10px;
+                                }
+                                    #content.compte .conv-lots .part .convers .contenu .left .apercu .guillemet_on{
+                                        height:15px;
+                                        background-image: url("../img/compte/guillemet_on.png");
+                                        background-repeat:no-repeat;
+                                        background-size: auto 100%;
+                                        background-position: 0px center;
+                                    }
+                                    #content.compte .conv-lots .part .convers .contenu .left .apercu .guillemet_off{
+                                        height:15px;
+                                        background-image: url("../img/compte/guillemet_off.png");
+                                        background-repeat:no-repeat;
+                                        background-size: auto 100%;
+                                        background-position: right center;
+                                    }
+                            #content.compte .conv-lots .part .convers .contenu .right{
+                                float:left;
+                                width:48%;
+                            }
+                                #content.compte .conv-lots .part .convers .contenu .right .nom{
+                                    padding-left:25%;
+                                    background-image:url("../img/compte/bulles.png") ;
+                                    background-repeat:no-repeat;
+                                    background-size: auto 90%;
+                                    background-position: 5px center;
+                                    color:#002267;
+                                    font-size:150%;
+                                }
+                                #content.compte .conv-lots .part .convers .contenu .right .ville{
+                                    margin-top:7px;
+                                    text-align: center;
+                                }
+                                #content.compte .conv-lots .part .convers .contenu .right .nb-message-total{
+                                    margin-top:7px;
+                                    text-align: center;
+                                }
+                                    #content.compte .conv-lots .part .convers .contenu .right .nb-message-total span{
+                                        font-size:150%;
+                                    }
+                        #content.compte .conv-lots .part .convers .lien{
+                            display: block;
+                            background-color:#002267;
+                            color:white;
+                            padding:10px;
+                            text-decoration: none;
+                        }
+                            #content.compte .conv-lots .part .convers .lien:hover{
+                                background-color: #214690;
+                            }
+
+
+
+                    #content.compte .conv-lots .part .convers .bottom .parts{
+                        width: 48%;
+                        float:left;
+                        margin-top:15px;
+                    }
+                        #content.compte .conv-lots .part .convers .bottom .parts.left{
+                            margin-right:4%;
+                        }
+                        #content.compte .conv-lots .part .convers .bottom .parts .nb-message.oui{
+                            font-size: 11px;
+                            background-color:#28aa17;
+                            text-align: center;
+                        }
+                        #content.compte .conv-lots .part .convers .bottom .parts .nb-message.non{
+                            font-size: 11px;
+                            background-color:#dc3232;
+                            text-align: center;
+                        }
+                        #content.compte .conv-lots .part .convers .bottom .parts .right{
+                            width:100%;
+                        }
+                        #content.compte .conv-lots .part .convers .bottom .parts .lien{
+                            font-size:11px;
+                        }
+
+
+                #content.compte .conv-lots .part .lots{
+                    float: right;
+                    width:95%;
+                }
+                    #content.compte .conv-lots .part .lots .title{
+                        padding:10px;
+                        background-color:#f3c100;
+                        color:black;
+                        font-size:150%;
+                        text-align: left;
+                    }
+                    #content.compte .conv-lots .part .lots .container{
+                        background-color:#002267;
+                        color:white;
+                        padding-bottom: 20px;
+                    }
+                        #content.compte .conv-lots .part .lots .container .line{
+                            padding-top:15px;
+                            text-indent: 30px;
+                        }
+                            #content.compte .conv-lots .part .lots .container .line span{
+                                font-size:60px;
+                            }
