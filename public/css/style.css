@@ -231,7 +231,7 @@ body{
                     #content.discussion .part .discuss .container-input{
                         padding-bottom: 8px;
                     }
-                        #content.discussion .part .discuss .container-input input[type=text]{
+                        #content.discussion .part .discuss .container-input form input[type=text]{
                             width:100%;
                             font-size:20px;
                             padding:5px;
@@ -239,7 +239,7 @@ body{
                             position: relative;
                             z-index: 9;
                         }
-                        #content.discussion .part .discuss .container-input input[type=button]{
+                        #content.discussion .part .discuss .container-input form input[type=submit]{
                             background-color: #f3c100;
                             color:black;
                             padding:7px;
@@ -253,7 +253,7 @@ body{
                             border:none;
                             cursor: pointer;
                         }
-                            #content.discussion .part .discuss .container-input input[type=button]:hover{
+                            #content.discussion .part .discuss .container-input form input[type=submit]:hover{
                                 background-color: #ffdc56;
                             }
                     #content.discussion .part .discuss .message{
@@ -269,7 +269,7 @@ body{
                             width:100%;
                             overflow: hidden;
                         }
-                            #content.discussion .part .discuss .destinataire .container{
+                            #content.discussion .part .discuss .destinataire .container-inputer{
                                 width:70%;
                                 float: left;
                                 background-color:#002267;
