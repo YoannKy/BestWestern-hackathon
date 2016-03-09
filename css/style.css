@@ -203,3 +203,176 @@ body{
                     padding-top:10px;
                     padding-bottom:10px;
                 }
+
+
+    /******************************************************************************************************************/
+    /*                                              DISCUSSION                                                        */
+    /******************************************************************************************************************/
+    #content.discussion{
+
+    }
+        #content.discussion{
+
+        }
+            #content.discussion .part{
+                float: left;
+                width: 50%;
+            }
+                #content.discussion .part .discuss{
+                    background-color:#f4f4f4;
+                    padding:8px;
+                    width:90%;
+                    font-size:12px;
+                    margin:auto;
+                    border-right: 2px solid #002267;
+                }
+                    #content.discussion .part .discuss .container-input{
+                        padding-bottom: 8px;
+                    }
+                        #content.discussion .part .discuss .container-input input[type=text]{
+                            width:100%;
+                            font-size:20px;
+                            padding:5px;
+                            padding-right:90px;
+                            position: relative;
+                            z-index: 9;
+                        }
+                        #content.discussion .part .discuss .container-input input[type=button]{
+                            background-color: #f3c100;
+                            color:black;
+                            padding:7px;
+                            float: right;
+                            margin-bottom:-100%;
+                            margin-top:-36px;
+                            position: relative;
+                            left:-3px;
+                            z-index: 10;
+                            text-transform: uppercase;
+                            border:none;
+                            cursor: pointer;
+                        }
+                            #content.discussion .part .discuss .container-input input[type=button]:hover{
+                                background-color: #ffdc56;
+                            }
+                    #content.discussion .part .discuss .message{
+                        margin-bottom: 15px;
+                    }
+                    #content.discussion .part .discuss .date{
+                        color:gray;
+                        font-size:13px;
+                        width: 100%;
+                        float: right;
+                    }
+                        #content.discussion .part .discuss .destinataire{
+                            width:100%;
+                            overflow: hidden;
+                        }
+                            #content.discussion .part .discuss .destinataire .container{
+                                width:70%;
+                                float: left;
+                                background-color:#002267;
+                                padding:5px;
+                                color:white;
+                            }
+                            #content.discussion .part .discuss .destinataire .date{
+                                text-align: left;
+                            }
+                        #content.discussion .part .discuss .receveur{
+                            width:100%;
+                            overflow: hidden;
+                        }
+                            #content.discussion .part .discuss .receveur .container{
+                                width:70%;
+                                float: right;
+                                background-color:#dadada;
+                                padding:5px;
+                                color:black;
+                            }
+                            #content.discussion .part .discuss .receveur .date{
+                                text-align: right;
+                            }
+            #content.discussion .part .container-hotel{
+                width:95%;
+                margin-bottom:20px;
+            }
+                #content.discussion .part .container-hotel .top{
+                    overflow: hidden;
+                    background-color: #dadada;
+                }
+                    #content.discussion .part .container-hotel .top .left{
+                        float: left;
+                        width: 30%;
+                        height:130px;
+                        background-image: url("../img/discussion/photo_hotel.jpg");
+                        background-size: auto 100%;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                    }
+                    #content.discussion .part .container-hotel .top .right{
+                        float: left;
+                        width:70%;
+                    }
+                        #content.discussion .part .container-hotel .top .right .title{
+                            background-color:#002267;
+                            padding:5px;
+                            color:white;
+                            padding-left: 15px;
+                            font-size:150%;
+                        }
+                        #content.discussion .part .container-hotel .top .right .details{
+                            padding-left:45px;
+                            background-image: url("../img/choix_membre/map.png");
+                            background-repeat: no-repeat;
+                            background-size: auto 70%;
+                            background-position: 5px center;
+                            padding-top:5px;
+                            padding-bottom:5px;
+                        }
+            #content.discussion .part .container-destinaire{
+                width:91%;
+                padding:2%;
+                background-color: #dadada;
+                overflow: hidden;
+            }
+                #content.discussion .part .container-destinaire .top{
+                    overflow: hidden;
+                    width:100%;
+                }
+                    #content.discussion .part .container-destinaire .top .parts{
+                        float: left;
+                    }
+                        #content.discussion .part .container-destinaire .top .parts.image{
+                            width:20%
+                        }
+                        #content.discussion .part .container-destinaire .top .parts.nom{
+                            width:60%;
+                            font-size:30px;
+                        }
+                        #content.discussion .part .container-destinaire .top .parts.ville{
+                            width:20%;
+                            font-size:15px;
+                            text-transform: uppercase;
+                        }
+            #content.discussion .part .container-destinaire .bottom{
+                background-image: url("../img/choix_membre/map.png");
+                background-repeat: no-repeat;
+                background-size: 40px auto;
+                background-position: 5px center;
+                float: left;
+                padding:15px 0;
+                padding-left:60px;
+                margin-top:15px;
+                line-height: 25px;
+            }
+                #content.discussion .part .container-destinaire .bottom span{
+                    background-color:white;
+                    padding-left: 15px;
+                    padding-right: 5px;
+                    border-radius: 3px;
+                    border-bottom-left-radius: 10px;
+                    border-top-left-radius: 10px;
+                    background-image: url("../img/choix_membre/icone_villes.png");
+                    background-repeat: no-repeat;
+                    background-position: 5px center;
+                    border:1px solid silver;
+                }
