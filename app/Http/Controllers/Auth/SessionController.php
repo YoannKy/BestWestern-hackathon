@@ -52,7 +52,7 @@ class SessionController extends Controller {
 		$result = $this->authManager->authenticate($credentials, $remember);
 
 		// Return the appropriate response
-		$path = session()->pull('url.intended', route('dashboard'));
+		$path = session()->pull('url.intended', route('ambassadors'));
 		return $result->dispatch($path);
 	}
 
