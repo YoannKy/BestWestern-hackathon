@@ -54,7 +54,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::post('convs/{id_conv}/add', 'ConvController@add');
 
-	Route::get('ambassadors', 'AmbassadorController@index');
+	Route::get('ambassadors', ['as' => 'ambassadors', 'uses' => 'AmbassadorController@index']);
 
 	Route::get('convs/{id_user}/create', 'ConvController@create');
 

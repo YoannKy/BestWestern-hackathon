@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
+use sentinel;
 
 class SessionController extends Controller {
 	/** @var Centaur\AuthManager */
@@ -50,9 +51,12 @@ class SessionController extends Controller {
 
 		// Attempt the Login
 		$result = $this->authManager->authenticate($credentials, $remember);
-
+		if (Sentinel::getUSer()) {
+			$path = session()->pull('url.intended', route('ambassadors'));
+		} else {
+			$path = session()->pull('url.intended', route('dashboard'));
+		}
 		// Return the appropriate response
-		$path = session()->pull('url.intended', route('dashboard'));
 		return $result->dispatch($path);
 	}
 
