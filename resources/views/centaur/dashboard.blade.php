@@ -4,17 +4,17 @@
 
 @section('content')
     <div id="content" class="accueil">
-        <img src="/img/accueil/ban_1.jpg" alt="">
+        <img src="img/accueil/ban_1.jpg" alt="">
         <div class="ban-dial">
          <form accept-charset="UTF-8" role="form" class="part" method="post" action="{{ route('auth.login.attempt') }}">
             <div class="text">
-                    <img src="img/accueil/pouces.png" alt="">
+                    <img src="{{asset('img/accueil/pouces.png')}}" alt="">
                     <br>
                     Et si un membre vous aidait
                     <br/>
                     à choisir votre destination?
                     <br>
-                    <img src="/img/accueil/bulles.png" alt="">
+                    <img src="{{asset('img/accueil/bulles.png')}}" alt="">
                     <div class="container-input">
                         <input class=" email" placeholder="Votre email..." name="email" type="text" value="{{ old('email') }}">
                     </div>
@@ -34,7 +34,7 @@
                 </form>
             <div class="part photo"></div>
         </div>
-        <img src="/img/accueil/ban_2.jpg" alt="">
-        <img src="/img/accueil/ban_3.jpg" alt="">
+        <img src="img/accueil/ban_2.jpg" alt="">
+        <img src="img/accueil/ban_3.jpg" alt="">
     </div>
 @stop

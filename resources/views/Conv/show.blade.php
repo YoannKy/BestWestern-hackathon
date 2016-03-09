@@ -57,11 +57,11 @@
         <div class="container-destinaire">
             <div class="top">
                 <div class="parts image">
-                    <img src="/img/discussion/photo_personne.png" alt="">
+                    <img src="{{asset('/img/discussion/photo_personne.png')}}" alt="">
                 </div>
                 <div class="parts nom">Carine <br> MEUNIER</div>
                 <div class="parts ville">
-                    <img src="/img/choix_membre/map.png" height="15" alt="">
+                    <img src="{{asset('/img/choix_membre/map.png')}}" height="15" alt="">
                     Lille
                 </div>
             </div>
