@@ -17,7 +17,7 @@ class SentinelDatabaseSeeder extends Seeder {
 			'password' => 'password',
 		));
 
-		$user = Sentinel::getUserRepository()->create(array(
+		$ambassador = Sentinel::getUserRepository()->create(array(
 			'email' => 'benoit@gmail.com',
 			'password' => 'password',
 			'first_name' => 'Benoit',
@@ -27,7 +27,7 @@ class SentinelDatabaseSeeder extends Seeder {
 			'address' => 'Paris,Marseille,Lille,Reims',
 		));
 
-		$user = Sentinel::getUserRepository()->create(array(
+		$ambassador2 = Sentinel::getUserRepository()->create(array(
 			'email' => 'francis@gmail.com',
 			'password' => 'password',
 			'first_name' => 'francis',
@@ -37,7 +37,7 @@ class SentinelDatabaseSeeder extends Seeder {
 			'address' => 'Paris,Rouen',
 		));
 
-		$user = Sentinel::getUserRepository()->create(array(
+		$prospect = Sentinel::getUserRepository()->create(array(
 			'email' => 'anonymous@gmail.com',
 			'password' => 'password',
 			'pseudo' => 'anonymous',
@@ -48,8 +48,12 @@ class SentinelDatabaseSeeder extends Seeder {
 		DB::table('activations')->truncate();
 		$code = Activation::create($admin)->code;
 		Activation::complete($admin, $code);
-		$code = Activation::create($user)->code;
-		Activation::complete($user, $code);
+		$code = Activation::create($prospect)->code;
+		Activation::complete($prospect, $code);
+		$code = Activation::create($ambassador)->code;
+		Activation::complete($ambassador, $code);
+		$code = Activation::create($ambassador2)->code;
+		Activation::complete($ambassador2, $code);
 
 		// Create Roles
 		$administratorRole = Sentinel::getRoleRepository()->create(array(
@@ -82,6 +86,8 @@ class SentinelDatabaseSeeder extends Seeder {
 
 		// Assign Roles to Users
 		$administratorRole->users()->attach($admin);
-		$subscriberRole->users()->attach($user);
+		$subscriberRole->users()->attach($prospect);
+		$subscriberRole->users()->attach($ambassador);
+		$subscriberRole->users()->attach($ambassador2);
 	}
 }

@@ -6,7 +6,7 @@
     <div id="content" class="accueil">
         <img src="img/accueil/ban_1.jpg" alt="">
         <div class="ban-dial">
-         <form accept-charset="UTF-8" role="form" class="part" method="post" action="{{ route('auth.login.attempt') }}">
+         <form accept-charset="UTF-8" role="form" class="part" method="post" action="{{ route('auth.login.prospect.attempt') }}">
             <div class="text">
                     <img src="{{asset('img/accueil/pouces.png')}}" alt="">
                     <br>

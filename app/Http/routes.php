@@ -20,6 +20,7 @@ Route::group(['middleware' => ['web']], function () {
 	// Authorization
 	Route::get('/login', ['as' => 'auth.login.form', 'uses' => 'Auth\SessionController@getLogin']);
 	Route::post('/login', ['as' => 'auth.login.attempt', 'uses' => 'Auth\SessionController@postLogin']);
+	Route::post('/prospect/login', ['as' => 'auth.login.prospect.attempt', 'uses' => 'Auth\SessionController@postLoginProspect']);
 	Route::get('/logout', ['as' => 'auth.logout', 'uses' => 'Auth\SessionController@getLogout']);
 
 	// Registration

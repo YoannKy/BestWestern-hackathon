@@ -33,10 +33,10 @@ class SessionController extends Controller {
 	 * Handle a Login Request
 	 * @return Response|Redirect
 	 */
-	public function postLogin(Request $request) {
+	public function postLoginProspect(Request $request) {
 		// Validate the Form Data
 		$result = $this->validate($request, [
-			'email' => 'required',
+			'email' => 'required|email',
 			'pseudo' => 'required',
 			'password' => 'required',
 		]);
@@ -56,6 +56,29 @@ class SessionController extends Controller {
 		} else {
 			$path = session()->pull('url.intended', route('dashboard'));
 		}
+		// Return the appropriate response
+		return $result->dispatch($path);
+	}
+
+	public function postLogin(Request $request) {
+		// Validate the Form Data
+		$result = $this->validate($request, [
+			'email' => 'required',
+			'password' => 'required',
+		]);
+
+		// Assemble Login Credentials
+		$credentials = [
+			'email' => trim($request->get('email')),
+			'password' => $request->get('password'),
+		];
+		$remember = (bool) $request->get('remember', false);
+
+		$result = $this->authManager->authenticate($credentials, $remember);
+
+		// Attempt the Login
+		$path = session()->pull('url.intended', route('dashboard'));
+
 		// Return the appropriate response
 		return $result->dispatch($path);
 	}
