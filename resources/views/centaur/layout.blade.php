@@ -9,7 +9,10 @@
 
         <!-- Bootstrap - Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/map.css')}}">
+
         <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,6 +47,8 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if (Sentinel::check())
+                            <li><a href="{{ route('user.show') }}">Voir mon profil</a></li>
+                            <li><a href="{{ route('user.edit') }}">Editer mon profil</a></li>
                             <li><a href="{{ route('convs.list') }}">Messages ({{Session::get('conv')}})</a></li>
                             <li><a href="{{ route('ambassadors') }}">Contacter un membre</a></li>
                             <li><p class="navbar-text">{{ Sentinel::getUser()->email }}</p></li>

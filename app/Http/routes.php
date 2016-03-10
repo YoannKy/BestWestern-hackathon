@@ -38,6 +38,10 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('password/reset', ['as' => 'auth.password.request.form', 'uses' => 'Auth\PasswordController@getRequest']);
 	Route::post('password/reset', ['as' => 'auth.password.request.attempt', 'uses' => 'Auth\PasswordController@postRequest']);
 
+	Route::get('/user/edit', ['as' => 'user.edit', 'uses' => 'UserController@selfedit']);
+	Route::get('/user/show', ['as' => 'user.show', 'uses' => 'UserController@selfshow']);
+	Route::put('/user/update', ['as' => 'user.update', 'uses' => 'UserController@selfUpdate']);
+
 	// Users
 	Route::resource('users', 'UserController');
 
