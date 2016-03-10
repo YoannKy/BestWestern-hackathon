@@ -51,6 +51,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('roles', 'RoleController');
 
 	Route::get('/map', ['as' => 'map', 'uses' => 'HostelController@index']);
+	Route::get('/ambassadors/{name}', ['uses' => 'AmbassadorController@index']);
 
 	// Dashboard
 	Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@index']);

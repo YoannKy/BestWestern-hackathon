@@ -16,6 +16,10 @@ class Hostel extends Model
 
 
     public static function getHostels() {
-        return Hostel::select('city')->distinct()->get();
+        return Hostel::select('city', 'name')->distinct()->get();
+    }
+
+    public static function getHostel($name) {
+        return Hostel::where('name', $name)->get();
     }
 }

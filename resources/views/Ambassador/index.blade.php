@@ -9,8 +9,9 @@
                 </div>
 
                 <select id="city">
+                    <option selected="selected"></option>
                     @foreach($cities as $city)
-                    <option>{{$city['city']}}</option>
+                    <option value="{{$city['city']}}">{{$city['city']}}</option>
                     @endforeach
                 </select>
             </div>
@@ -18,11 +19,12 @@
                 <div class="title">
                     Choisissez un hôtel
                 </div>
-                <select>
-                    <option>Ville 1</option>
-                    <option>Ville 2</option>
-                    <option>Ville 3</option>
-                    <option>Ville 4</option>
+                <select id="hostel">
+                    <option selected="selected"></option>
+                    @foreach($cities as $city)
+                        <option value="{{$city['name']}}">{{$city['name']}} - {{$city['city']}}</option>
+
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -44,12 +46,21 @@
                             {{$user->address}}
                         </div>
                     </div>
+                    <?php $citiesHostels = array();?>
                     <div class="villes">
-                        <span>Mon-Saint-Michel</span>
-                        <span>Paris</span>
-                        <span>Strasbourg</span>
-                        <span>Marseille</span>
-                        <span>Bordeaux</span>
+                      @if(empty($user->hostels))
+
+                      @else
+                        @foreach($user->hostels as $hostels)
+                            @if(in_array($hostels->city, $citiesHostels) == false)
+                            <span>{{$hostels->city}}</span>
+                                <?php $citiesHostels[] = $hostels->city?>
+                            @endif
+                        @endforeach
+                        @foreach($user->hostels as $hostels)
+                            <span>{{$hostels->name}}</span>
+                        @endforeach
+                        @endif
                     </div>
                 </div>
                 <a class="lien" href="convs/{{$user->id}}/create">
@@ -60,9 +71,32 @@
         </div>
     </div>
   <script>
-      $( "select" )
+      function setOption(){
+          $('option[value="{{$name}}"]').attr('selected','selected');
+          $('option[value="{{$cityDefault}}"]').attr('selected','selected');
+          var hostel = $( "select#hostel option:selected").text();
+          var ambassador = $('.people .part');
+          ambassador.each(function(index){
+              var count = 0;
+              var hasNotVisited = false;
+              var cities = $(this).find('.villes span');
+              cities.each(function(){
+                  if($(this).html() === hostel.split(' - ')[0]) {
+                      count += 1;
+                  }
+              });
+              if(count === 0){
+                  $(this).hide();
+              } else {
+                  $(this).show();
+              }
+          });
+      }
+
+      $( "#city" )
               .change(function () {
                   var city = $( "select#city option:selected").text();
+                  $("#hostel").val('');
                   var ambassador = $('.people .part');
                   ambassador.each(function(index){
                       var count = 0;
@@ -79,8 +113,38 @@
                           $(this).show();
                       }
                   });
+                  var hostels = $('#hostel option');
+                  hostels.each(function(index){
+                      var count = 0;
+                      var hasNotVisited = false;
+                      if($(this).text().indexOf("- "+city) == -1) {
+                          $(this).hide();
+                      }else {
+                          $(this).show();
+                      }
+                  });
               });
-                  //$( ".part" ).remove();
-
+      $( "#hostel" )
+              .change(function () {
+                  var hostel = $( "select#hostel option:selected").text();
+                  var ambassador = $('.people .part');
+                  ambassador.each(function(index){
+                      var count = 0;
+                      var hasNotVisited = false;
+                      var cities = $(this).find('.villes span');
+                      cities.each(function(){
+                          if($(this).html() === hostel.split(' - ')[0]) {
+                              count += 1;
+                          }
+                      });
+                      if(count === 0){
+                          $(this).hide();
+                      } else {
+                          $(this).show();
+                      }
+                  });
+              });
+      setOption();
   </script>
+
 @stop

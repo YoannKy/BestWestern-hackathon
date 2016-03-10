@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Hostel;
+use App\Models\User;
 use Cartalyst\Sentinel\Users\IlluminateUserRepository;
 use Sentinel;
 
@@ -15,7 +16,7 @@ class AmbassadorController extends Controller {
 		$this->userRepository = app()->make('sentinel.users');
 	}
 
-	public function index() {
+	public function index($name = null) {
 		$user = Sentinel::getUser();
 		$cities = Hostel::getHostels();
 		if ($user) {
@@ -23,6 +24,11 @@ class AmbassadorController extends Controller {
 		} else {
 			$users = $this->userRepository->createModel()->where('ambassador', '=', '1')->get();
 		}
-		return view('Ambassador.index', ['users' => $users, 'cities' => $cities]);
+		$hostel = Hostel::getHostel($name);
+		$city = "";
+		if (isset($hostel[0]) && isset($hostel[0]->city)) {
+			$city = $hostel[0]->city;
+		}
+		return view('Ambassador.index', ['users' => $users, 'cities' => $cities, 'cityDefault' => $city, 'name' => $name]);
 	}
 }
