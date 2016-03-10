@@ -14,7 +14,6 @@ class HostelController extends Controller
 {
     public function index() {
         $hostels = Hostel::all();
-
         return view('map', ['hostels' => $hostels, 'count' => 1]);
     }
 

@@ -79,13 +79,13 @@ class SessionController extends Controller {
 
 		$result = $this->authManager->authenticate($credentials, $remember);
 
-		// Attempt the Login
-		$path = session()->pull('url.intended', route('dashboard'));
 		// Return the appropriate response
-        $id = Sentinel::getUser()->id;
-        $conv = TBMsg::getNumOfUnreadMsgs($id);
-        Session::put('conv', $conv);
-        $path = session()->pull('url.intended', route('dashboard',array('conv'=>$conv)));
+		if (Sentinel::getUSer()) {
+			$id = Sentinel::getUser()->id;
+			$conv = TBMsg::getNumOfUnreadMsgs($id);
+			Session::put('conv', $conv);
+		}
+		$path = session()->pull('url.intended', route('dashboard'));
         return $result->dispatch($path);
     }
 

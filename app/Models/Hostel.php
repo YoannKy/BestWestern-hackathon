@@ -14,4 +14,8 @@ class Hostel extends Model
      */
     protected $table = 'hostels';
 
+
+    public static function getHostels() {
+        return Hostel::select('city')->distinct()->get();
+    }
 }

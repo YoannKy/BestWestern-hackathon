@@ -9,6 +9,10 @@ class DatabaseSeeder extends Seeder {
 	 * @return void
 	 */
 	public function run() {
+		Eloquent::unguard();
+		DB::Statement('SET FOREIGN_KEY_CHECKS=0;');
 		$this->call('HostelsTableSeeder');
+		$this->call('SentinelDatabaseSeeder');
+		DB::Statement('SET FOREIGN_KEY_CHECKS=1;');
 	}
 }

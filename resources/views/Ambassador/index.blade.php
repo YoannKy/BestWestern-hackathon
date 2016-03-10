@@ -7,11 +7,11 @@
                 <div class="title">
                     Choisissez une ville
                 </div>
-                <select>
-                    <option>Ville 1</option>
-                    <option>Ville 2</option>
-                    <option>Ville 3</option>
-                    <option>Ville 4</option>
+
+                <select id="city">
+                    @foreach($cities as $city)
+                    <option>{{$city['city']}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="part">
@@ -41,7 +41,7 @@
                         </div>
                         <div class="ville">
                             <img src="{{asset('img/choix_membre/map.png')}}" height="15" alt="">
-                            Lille
+                            {{$user->address}}
                         </div>
                     </div>
                     <div class="villes">
@@ -59,4 +59,28 @@
             @endforeach
         </div>
     </div>
+  <script>
+      $( "select" )
+              .change(function () {
+                  var city = $( "select#city option:selected").text();
+                  var ambassador = $('.people .part');
+                  ambassador.each(function(index){
+                      var count = 0;
+                      var hasNotVisited = false;
+                      var cities = $(this).find('.villes span');
+                            cities.each(function(){
+                            if($(this).html() === city) {
+                                count += 1;
+                            }
+                      });
+                      if(count === 0){
+                          $(this).hide();
+                      } else {
+                          $(this).show();
+                      }
+                  });
+              });
+                  //$( ".part" ).remove();
+
+  </script>
 @stop
