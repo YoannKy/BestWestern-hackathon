@@ -48,6 +48,7 @@
                         @endif
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{ route('map') }}">Voir la carte</a></li>
                             <li><a href="{{ route('ambassadors') }}">Contacter un membre</a></li>
                         @if (Sentinel::check())
                             <li><a href="{{ route('user.show') }}">Voir mon profil</a></li>
