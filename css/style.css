@@ -378,7 +378,7 @@ body{
                 }
 
     /******************************************************************************************************************/
-    /*                                              DISCUSSION                                                        */
+    /*                                              COMPTE AMBASSADEUR                                                */
     /******************************************************************************************************************/
     #content.compte{
 
@@ -633,3 +633,140 @@ body{
                             #content.compte .conv-lots .part .lots .container .line span{
                                 font-size:60px;
                             }
+
+
+
+/******************************************************************************************************************/
+/*                                              COMPTE VISITEUR                                                */
+/******************************************************************************************************************/
+#content.compte_visiteur{
+
+}
+#content.compte_visiteur .title{
+    font-size: 40px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+#content.compte_visiteur .container{
+    overflow: hidden;
+    width:95%;
+    margin:20px auto 0;
+}
+#content.compte_visiteur .container .part{
+    float: left;
+    width:100%;
+    overflow: hidden;
+}
+#content.compte_visiteur .container .part .convers{
+    float: left;
+    width:95%;
+}
+#content.compte_visiteur .container .part .convers{
+    overflow: hidden;
+}
+#content.compte_visiteur .container .part .convers .nb-message{
+    background-color: #606467;
+    color:white;
+    padding:10px;
+}
+#content.compte_visiteur .container .part .convers .contenu{
+    background-color:#dadada;
+    padding:10px;
+    overflow: hidden;
+}
+#content.compte_visiteur .container .part .convers .contenu .left{
+    float:left;
+    width:48%;
+    margin-right:4%;
+}
+#content.compte_visiteur .container .part .convers .contenu .left .etat{
+    padding:10px;
+    color:white;
+    font-size:12px;
+    text-align: center;
+    background-color:#dc3232;
+}
+#content.compte_visiteur .container .part .convers .contenu .left .apercu{
+    background-color: white;
+    color:black;
+    padding:5px;
+    font-style: italic;
+    font-size:11px;
+    text-align: center;
+    margin-top:10px;
+}
+#content.compte_visiteur .container .part .convers .contenu .left .apercu .guillemet_on{
+    height:15px;
+    background-image: url("../img/compte/guillemet_on.png");
+    background-repeat:no-repeat;
+    background-size: auto 100%;
+    background-position: 0px center;
+}
+#content.compte_visiteur .container .part .convers .contenu .left .apercu .guillemet_off{
+    height:15px;
+    background-image: url("../img/compte/guillemet_off.png");
+    background-repeat:no-repeat;
+    background-size: auto 100%;
+    background-position: right center;
+}
+#content.compte_visiteur .container .part .convers .contenu .right{
+    float:left;
+    width:48%;
+}
+#content.compte_visiteur .container .part .convers .contenu .right .nom{
+    padding-left:25%;
+    background-image:url("../img/compte/bulles.png") ;
+    background-repeat:no-repeat;
+    background-size: auto 90%;
+    background-position: 5px center;
+    color:#002267;
+    font-size:150%;
+}
+#content.compte_visiteur .container .part .convers .contenu .right .ville{
+    margin-top:7px;
+    text-align: center;
+}
+#content.compte_visiteur .container .part .convers .contenu .right .nb-message-total{
+    margin-top:7px;
+    text-align: center;
+}
+#content.compte_visiteur .container .part .convers .contenu .right .nb-message-total span{
+    font-size:150%;
+}
+#content.compte_visiteur .container .part .convers .lien{
+    display: block;
+    background-color:#002267;
+    color:white;
+    padding:10px;
+    text-decoration: none;
+}
+#content.compte_visiteur .container .part .convers .lien:hover{
+    background-color: #214690;
+}
+
+
+
+#content.compte_visiteur .container .part .convers .bottom .parts{
+    width: 48%;
+    float:left;
+    margin-top:15px;
+}
+#content.compte_visiteur .container .part .convers .bottom .parts.left{
+    margin-right:4%;
+}
+#content.compte_visiteur .container .part .convers .bottom .parts .nb-message.oui{
+    font-size: 11px;
+    background-color:#28aa17;
+    text-align: center;
+}
+#content.compte_visiteur .container .part .convers .bottom .parts .nb-message.non{
+    font-size: 11px;
+    background-color:#dc3232;
+    text-align: center;
+}
+#content.compte_visiteur .container .part .convers .bottom .parts .right{
+    width:100%;
+}
+#content.compte_visiteur .container .part .convers .bottom .parts .lien{
+    font-size:11px;
+}
