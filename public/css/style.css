@@ -357,6 +357,11 @@ body{
                             width:60%;
                             font-size:30px;
                         }
+                           #content.discussion .part .container-destinaire .top .parts.mail{
+                            float:none;
+                            font-size:30px;
+                        }
+                     
                         #content.discussion .part .container-destinaire .top .parts.ville{
                             width:20%;
                             font-size:15px;
