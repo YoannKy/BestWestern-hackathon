@@ -8,7 +8,7 @@
         <div class="discuss">
             <div class="container-input">
             {{ Form::open(array('url' => 'convs/'.$convId.'/add')) }}
-				{{Form::text('message')}}
+				{{Form::text('message',null,array('required'=>'required'))}}
 				{{Form::hidden('id_conv',$convId)}}
 				{{Form::submit('Envoyer')}}
 			{{ Form::close() }}
