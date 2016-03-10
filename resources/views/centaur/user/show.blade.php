@@ -40,7 +40,7 @@
                         {{$user->reward}}<span>pts</span>
                     </div>
                     <a class="bouton">
-                        Utiliser vos points Reward
+                        Utilisez vos points Reward
                     </a>
                 </div>
             </div>

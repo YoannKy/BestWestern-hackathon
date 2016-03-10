@@ -46,8 +46,8 @@
                         @if (Sentinel::check())
                             <li><a href="{{ route('user.show') }}">Voir mon profil</a></li>
                             <li><a href="{{ route('user.edit') }}">Editer mon profil</a></li>
+                            <li><a href="{{ route('convs.list') }}">Messages ({{Session::get('conv')}})</a></li>
                             <li><a href="{{ route('ambassadors') }}">Contacter un membre</a></li>
-                            <li><a href="{{ route('convs.list') }}">Messages</a></li>
                             <li><p class="navbar-text">{{ Sentinel::getUser()->email }}</p></li>
                             <li><a href="{{ route('auth.logout') }}">Log Out</a></li>
                         @else

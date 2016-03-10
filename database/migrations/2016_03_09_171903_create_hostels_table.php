@@ -12,9 +12,15 @@ class CreateHostelsTable extends Migration {
 	public function up() {
 		Schema::create('hostels', function (Blueprint $table) {
 			$table->increments('id');
+			$table->string('name');
+			$table->string('category');
+			$table->string('city');
+			$table->integer('zipCode');
+			$table->double('coordx');
+			$table->double('coordy');
 			$table->string('address');
+			$table->double('coord');
 			$table->timestamps();
-
 			$table->engine = 'InnoDB';
 			$table->unique('address');
 		});
