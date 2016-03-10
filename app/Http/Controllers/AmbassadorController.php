@@ -16,10 +16,15 @@ class AmbassadorController extends Controller {
 		$this->userRepository = app()->make('sentinel.users');
 	}
 
-	public function index() {
+	public function index($name=null) {
 		$user = Sentinel::getUser();
 		$cities = Hostel::getHostels();
+		$hostel = Hostel::getHostel($name);
+		$city = "";
+		if (isset($hostel[0]->city)) {
+			$city = $hostel[0]->city;
+		}
 		$users = User::where('id', '!=', $user->id)->where('ambassador', '=', '1')->get();
-		return view('Ambassador.index', ['users' => $users, 'cities' => $cities]);
+		return view('Ambassador.index', ['users' => $users, 'cities' => $cities, 'cityDefault' => $city, 'name' => $name]);
 	}
 }

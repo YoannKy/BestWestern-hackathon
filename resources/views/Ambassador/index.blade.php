@@ -11,7 +11,7 @@
                 <select id="city">
                     <option selected="selected"></option>
                     @foreach($cities as $city)
-                    <option>{{$city['city']}}</option>
+                    <option value="{{$city['city']}}">{{$city['city']}}</option>
                     @endforeach
                 </select>
             </div>
@@ -22,7 +22,7 @@
                 <select id="hostel">
                     <option selected="selected"></option>
                     @foreach($cities as $city)
-                        <option>{{$city['name']}} - {{$city['city']}}</option>
+                        <option value="{{$city['name']}}">{{$city['name']}} - {{$city['city']}}</option>
 
                     @endforeach
                 </select>
@@ -67,6 +67,28 @@
         </div>
     </div>
   <script>
+      function setOption(){
+          $('option[value="{{$name}}"]').attr('selected','selected');
+          $('option[value="{{$cityDefault}}"]').attr('selected','selected');
+          var hostel = $( "select#hostel option:selected").text();
+          var ambassador = $('.people .part');
+          ambassador.each(function(index){
+              var count = 0;
+              var hasNotVisited = false;
+              var cities = $(this).find('.villes span');
+              cities.each(function(){
+                  if($(this).html() === hostel.split(' - ')[0]) {
+                      count += 1;
+                  }
+              });
+              if(count === 0){
+                  $(this).hide();
+              } else {
+                  $(this).show();
+              }
+          });
+      }
+
       $( "#city" )
               .change(function () {
                   var city = $( "select#city option:selected").text();
@@ -118,5 +140,7 @@
                       }
                   });
               });
+      setOption();
   </script>
+
 @stop
