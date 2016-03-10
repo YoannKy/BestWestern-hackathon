@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 use Cartalyst\Sentinel\Users\IlluminateUserRepository;
 use Illuminate\Http\Request;
 use Sentinel;
+use Session;
 use stdClass;
 use TBMsg;
-use Session;
 
 class ConvController extends Controller {
 
@@ -27,24 +27,29 @@ class ConvController extends Controller {
 	public function show($convId) {
 		$user = Sentinel::getUser();
 		$conv = TBMsg::getConversationMessages($convId, $user->id);
-
+		$participants = [];
+		$participants = array_merge($participants, $conv->getAllParticipants());
+		//making sure each user appears once
+		$participants = array_unique($participants);
+		$participant = $this->userRepository->whereIn('id', $participants)->where('id', '!=', $user->id)->first();
 		$history = [];
 		$getNumOfParticipants = $conv->getNumOfParticipants();
 		$participants = $conv->getAllParticipants();
 		$messages = $conv->getAllMessages();
 		foreach ($messages as $message) {
 			$msg = new stdClass();
+
 			$msg->content = $message->getContent();
 			$msg->senderId = $message->getSender();
 			$msg->status = $message->getStatus();
 			$msg->created = $message->getCreated();
-			TBMsg::markMessageAsRead($message->getId(),$user->id);
+			TBMsg::markMessageAsRead($message->getId(), $user->id);
 			array_push($history, $msg);
 		}
 		$id = Sentinel::getUser()->id;
 		$unread = TBMsg::getNumOfUnreadMsgs($id);
 		Session::put('conv', $unread);
-		return view('Conv.show', ['messages' => $history, 'convId' => $convId]);
+		return view('Conv.show', ['messages' => $history, 'convId' => $convId, 'participant' => $participant]);
 	}
 
 	public function add(Request $request, $convId) {
@@ -59,6 +64,5 @@ class ConvController extends Controller {
 		$conv = TBMsg::createConversation(array($user->id, $userId));
 		return redirect('/convs/' . $conv['convId']);
 	}
-
 
 }

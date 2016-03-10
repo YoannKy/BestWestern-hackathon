@@ -8,14 +8,14 @@
         <div class="discuss">
             <div class="container-input">
             {{ Form::open(array('url' => 'convs/'.$convId.'/add')) }}
-				{{Form::text('message')}}
+				{{Form::text('message',null,array('required'=>'required'))}}
 				{{Form::hidden('id_conv',$convId)}}
 				{{Form::submit('Envoyer')}}
 			{{ Form::close() }}
 			</div>
              @foreach($messages as $message)
 				 @if(Sentinel::getUser()->id == $message->senderId)
-				 	<div class="message destinataire">
+				 	<div class="message receveur">
                 		<div class="container">
                 			{{$message->content}}
                 		</div>
@@ -24,7 +24,7 @@
 			            </div>
                 	</div>
 				 @else
-				 	 <div class="message receveur">
+				 	 <div class="message destinataire">
                 		<div class="container">
                 			{{$message->content}}
                 		</div>
@@ -59,7 +59,9 @@
                 <div class="parts image">
                     <img src="{{asset('/img/choix_membre/photo.png')}}" alt="">
                 </div>
-                <div class="parts nom">Carine <br> MEUNIER</div>
+                <div class="parts nom">{{$participant->first_name}} <br> {{$participant->last_name}}</div>
+                <div class="parts mail">{{$participant->email}}</div>
+                <Bordeaux>
                 <div class="parts ville">
                     <img src="{{asset('/img/choix_membre/map.png')}}" height="15" alt="">
                     Lille

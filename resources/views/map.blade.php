@@ -64,7 +64,7 @@
                 contenuInfoBulle = contenuInfoBulle+'<div class="prixHotel">à partir de<br /><b>'+price+'</b></div>';
             }
             contenuInfoBulle = contenuInfoBulle+'<div class="visuelInfoCarte">'+image_facade_hotel+'</div><div class="clr"></div>';
-            contenuInfoBulle = contenuInfoBulle+'<div class="btnMsg"><a href="choix_membre.html">Demander l\'avis d\'un membre pour cet hôtel</a></div></br><div class="btnHotel"><a href="javascript:void(0)" class="btnForm '+classPrice+'" onclick="tc_events_2(this, \'full_carto_ouverture_fiche_detaillee\',{});Affichedetaillehotels(\''+hotelcode+'\',\''+price+'\',\''+etoiles+'\',\''+url_occup+'\',\''+DateRangeStart+'\',\''+DateRangeEnd+'\',\''+note+'\',\''+avis+'\')">Voir la fiche détaillée</a>';
+            contenuInfoBulle = contenuInfoBulle+'<div class="btnMsg"><a href="{{route("ambassadors")}}">Demander l\'avis d\'un membre pour cet hôtel</a></div></br><div class="btnHotel"><a href="javascript:void(0)" class="btnForm '+classPrice+'" onclick="tc_events_2(this, \'full_carto_ouverture_fiche_detaillee\',{});Affichedetaillehotels(\''+hotelcode+'\',\''+price+'\',\''+etoiles+'\',\''+url_occup+'\',\''+DateRangeStart+'\',\''+DateRangeEnd+'\',\''+note+'\',\''+avis+'\')">Voir la fiche détaillée</a>';
             if(price!="0"){
                 contenuInfoBulle = contenuInfoBulle+'<a class="btnForm lienReserver" href="'+url_occup+'">Réserver</a>';
             }

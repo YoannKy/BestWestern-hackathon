@@ -6,6 +6,7 @@
 <div id="content" class="compte">
     <div class="title">
         VOTRE PROFIL REWARD
+        count($lastConv);
     </div>
     <div class="informations">
         <div class="part left">
