@@ -48,6 +48,8 @@ Route::group(['middleware' => ['web']], function () {
 	// Roles
 	Route::resource('roles', 'RoleController');
 
+	Route::get('/map', ['as' => 'map', 'uses' => 'HostelController@index']);
+
 	// Dashboard
 	Route::get('dashboard', ['as' => 'dashboard', 'uses' => function () {
 		return view('centaur.dashboard');
