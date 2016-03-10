@@ -96,8 +96,11 @@
       $( "#city" )
               .change(function () {
                   var city = $( "select#city option:selected").text();
-                  $("#hostel").val('');
                   var ambassador = $('.people .part');
+                  if(city === ""){
+                      ambassador.show();
+                  } else {
+                  $("#hostel").val('');
                   ambassador.each(function(index){
                       var count = 0;
                       var hasNotVisited = false;
@@ -123,7 +126,9 @@
                           $(this).show();
                       }
                   });
+                }
               });
+
       $( "#hostel" )
               .change(function () {
                   var hostel = $( "select#hostel option:selected").text();
@@ -146,8 +151,8 @@
               });
       @if($name != "" && $cityDefault != "")
         <?php
-            echo 'setOption();';
-        ?>
+echo 'setOption();';
+?>
       @endif
   </script>
 
