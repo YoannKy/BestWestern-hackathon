@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use Sentinel;
+use TBMsg;
+use Session;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -56,7 +58,10 @@ class SessionController extends Controller
         $result = $this->authManager->authenticate($credentials, $remember);
 
         // Return the appropriate response
-        $path = session()->pull('url.intended', route('dashboard'));
+        $id = Sentinel::getUser()->id;
+        $conv = TBMsg::getNumOfUnreadMsgs($id);
+        Session::put('conv', $conv);
+        $path = session()->pull('url.intended', route('dashboard',array('conv'=>$conv)));
         return $result->dispatch($path);
     }
 

@@ -44,7 +44,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if (Sentinel::check())
-                            <li><a href="{{ route('convs.list') }}">Messages</a></li>
+                            <li><a href="{{ route('convs.list') }}">Messages ({{Session::get('conv')}})</a></li>
                             <li><p class="navbar-text">{{ Sentinel::getUser()->email }}</p></li>
                             <li><a href="{{ route('auth.logout') }}">Log Out</a></li>
                         @else

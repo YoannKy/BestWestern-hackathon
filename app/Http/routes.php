@@ -57,6 +57,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('convs/{id_user}/create', 'ConvController@create');
 
 
+
 });
 
 /*
