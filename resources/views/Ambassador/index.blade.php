@@ -48,7 +48,7 @@
                     </div>
                     <?php $citiesHostels = array();?>
                     <div class="villes">
-                      @if(empty($user->hostels))
+                      @if(count($user->hostels)===0)
 
                       @else
                         @foreach($user->hostels as $hostels)
@@ -98,9 +98,10 @@
                   var city = $( "select#city option:selected").text();
                   var ambassador = $('.people .part');
                   if(city === ""){
+
+                  $("#hostel").val('');
                       ambassador.show();
                   } else {
-                  $("#hostel").val('');
                   ambassador.each(function(index){
                       var count = 0;
                       var hasNotVisited = false;
