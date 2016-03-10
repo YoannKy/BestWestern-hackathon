@@ -7,6 +7,8 @@ use Sentinel;
 use App\Http\Requests;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
+use TBMsg;
+use Session;
 use Cartalyst\Sentinel\Users\IlluminateUserRepository;
 
 class UserController extends Controller
@@ -41,6 +43,7 @@ class UserController extends Controller
         $users = $this->userRepository->createModel()->paginate(15);
 
         return view('Centaur::users.index', ['users' => $users]);
+
     }
 
     /**

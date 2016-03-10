@@ -278,7 +278,7 @@ body{
                             width:100%;
                             overflow: hidden;
                         }
-                            #content.discussion .part .discuss .destinataire .container-inputer{
+                            #content.discussion .part .discuss .destinataire .container{
                                 width:70%;
                                 float: left;
                                 background-color:#002267;

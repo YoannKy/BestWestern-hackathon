@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+
+use Sentinel;
+use TBMsg;
+use Session;
 use App\Http\Controllers\Controller;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
-use sentinel;
 
 class SessionController extends Controller {
 	/** @var Centaur\AuthManager */
@@ -78,10 +81,13 @@ class SessionController extends Controller {
 
 		// Attempt the Login
 		$path = session()->pull('url.intended', route('dashboard'));
-
 		// Return the appropriate response
-		return $result->dispatch($path);
-	}
+        $id = Sentinel::getUser()->id;
+        $conv = TBMsg::getNumOfUnreadMsgs($id);
+        Session::put('conv', $conv);
+        $path = session()->pull('url.intended', route('dashboard',array('conv'=>$conv)));
+        return $result->dispatch($path);
+    }
 
 	/**
 	 * Handle a Logout Request

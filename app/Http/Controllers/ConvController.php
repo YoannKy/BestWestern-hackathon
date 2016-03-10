@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Sentinel;
 use stdClass;
 use TBMsg;
+use Session;
 
 class ConvController extends Controller {
 
@@ -26,6 +27,7 @@ class ConvController extends Controller {
 	public function show($convId) {
 		$user = Sentinel::getUser();
 		$conv = TBMsg::getConversationMessages($convId, $user->id);
+
 		$history = [];
 		$getNumOfParticipants = $conv->getNumOfParticipants();
 		$participants = $conv->getAllParticipants();
@@ -36,8 +38,12 @@ class ConvController extends Controller {
 			$msg->senderId = $message->getSender();
 			$msg->status = $message->getStatus();
 			$msg->created = $message->getCreated();
+			TBMsg::markMessageAsRead($message->getId(),$user->id);
 			array_push($history, $msg);
 		}
+		$id = Sentinel::getUser()->id;
+		$unread = TBMsg::getNumOfUnreadMsgs($id);
+		Session::put('conv', $unread);
 		return view('Conv.show', ['messages' => $history, 'convId' => $convId]);
 	}
 
@@ -52,6 +58,7 @@ class ConvController extends Controller {
 		$user = Sentinel::getUser();
 		$conv = TBMsg::createConversation(array($user->id, $userId));
 		return redirect('/convs/' . $conv['convId']);
-		//$conv = TBMsg::addMessageToConversation($convId, $userId, $request->input('message'));
 	}
+
+
 }
