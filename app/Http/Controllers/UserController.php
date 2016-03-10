@@ -179,13 +179,21 @@ class UserController extends Controller {
 				$history = array_slice($history, 0, 2);
 			}
 		};
-
-		return view('Centaur::user.show', [
-			'user' => $user,
-			'convs' => $history,
-			'lastConv' => $lastConv,
-			'countMessages' => $messages,
-		]);
+		if ($user->ambassador) {
+			return view('Centaur::user.show', [
+				'user' => $user,
+				'convs' => $history,
+				'lastConv' => $lastConv,
+				'countMessages' => $messages,
+			]);
+		} else {
+			return view('Centaur::prospect.show', [
+				'user' => $user,
+				'convs' => $history,
+				'lastConv' => $lastConv,
+				'countMessages' => $messages,
+			]);
+		}
 	}
 
 	public function selfedit() {
