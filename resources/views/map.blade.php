@@ -1,17 +1,7 @@
 @extends('Centaur::layout')
 @section('title', 'Dashboard')
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" type="image/png" href="img/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Best Western</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/map.css">
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <style type="text/css">
+@section('content')
+ <style type="text/css">
         html, body {
             height: 100%;
             margin: 0;
@@ -234,10 +224,6 @@
             });
         }
     </script>
-</head>
-<body>
-<div id="header">
-</div>
 <div id="content" class="accueil">
     <div id="map-canvas" style="width: 100%; position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);">Map loading...</div>
 </div>
@@ -247,5 +233,4 @@
         init(48.856614, 2.3522219000000177);
     });
 </script>
-</body>
-</html>
+@stop
