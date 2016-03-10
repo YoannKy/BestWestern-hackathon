@@ -9,6 +9,7 @@
                 </div>
 
                 <select id="city">
+                    <option selected="selected"></option>
                     @foreach($cities as $city)
                     <option>{{$city['city']}}</option>
                     @endforeach
@@ -18,11 +19,12 @@
                 <div class="title">
                     Choisissez un hôtel
                 </div>
-                <select>
-                    <option>Ville 1</option>
-                    <option>Ville 2</option>
-                    <option>Ville 3</option>
-                    <option>Ville 4</option>
+                <select id="hostel">
+                    <option selected="selected"></option>
+                    @foreach($cities as $city)
+                        <option>{{$city['name']}} - {{$city['city']}}</option>
+
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -44,12 +46,17 @@
                             {{$user->address}}
                         </div>
                     </div>
+                    <?php $citiesHostels = array(); ?>
                     <div class="villes">
-                        <span>Mon-Saint-Michel</span>
-                        <span>Paris</span>
-                        <span>Strasbourg</span>
-                        <span>Marseille</span>
-                        <span>Bordeaux</span>
+                        @foreach($user->hostels as $hostels)
+                            @if(in_array($hostels->city, $citiesHostels) == false)
+                            <span>{{$hostels->city}}</span>
+                                <?php $citiesHostels[] = $hostels->city ?>
+                            @endif
+                        @endforeach
+                        @foreach($user->hostels as $hostels)
+                            <span>{{$hostels->name}}</span>
+                        @endforeach
                     </div>
                 </div>
                 <a class="lien" href="convs/{{$user->id}}/create">
@@ -60,9 +67,10 @@
         </div>
     </div>
   <script>
-      $( "select" )
+      $( "#city" )
               .change(function () {
                   var city = $( "select#city option:selected").text();
+                  $("#hostel").val('');
                   var ambassador = $('.people .part');
                   ambassador.each(function(index){
                       var count = 0;
@@ -79,8 +87,37 @@
                           $(this).show();
                       }
                   });
+                  var hostels = $('#hostel option');
+                  hostels.each(function(index){
+                      var count = 0;
+                      var hasNotVisited = false;
+                      if($(this).text().indexOf("- "+city) == -1) {
+                          $(this).hide();
+                      }else {
+                          $(this).show();
+                      }
+                  });
               });
-                  //$( ".part" ).remove();
-
+      $( "#hostel" )
+              .change(function () {
+                  var hostel = $( "select#hostel option:selected").text();
+                  var ambassador = $('.people .part');
+                  ambassador.each(function(index){
+                      var count = 0;
+                      var hasNotVisited = false;
+                      var cities = $(this).find('.villes span');
+                      cities.each(function(){
+                          console.log(hostel.split('-')[0]);
+                          if($(this).html() === hostel.split(' - ')[0]) {
+                              count += 1;
+                          }
+                      });
+                      if(count === 0){
+                          $(this).hide();
+                      } else {
+                          $(this).show();
+                      }
+                  });
+              });
   </script>
 @stop
