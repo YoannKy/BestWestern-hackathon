@@ -140,7 +140,11 @@
                       }
                   });
               });
-      setOption();
+      @if($name != "" && $cityDefault != "")
+        <?php
+            echo 'setOption();';
+        ?>
+      @endif
   </script>
 
 @stop
