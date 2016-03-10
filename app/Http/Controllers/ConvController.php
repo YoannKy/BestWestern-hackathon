@@ -55,6 +55,8 @@ class ConvController extends Controller {
 	public function add(Request $request, $convId) {
 		$user = Sentinel::getUser();
 		$userId = $user->id;
+		$user->reward++;
+		$user->save();
 		$conv = TBMsg::addMessageToConversation($convId, $userId, $request->input('message'));
 		return redirect('/convs/' . $convId);
 	}

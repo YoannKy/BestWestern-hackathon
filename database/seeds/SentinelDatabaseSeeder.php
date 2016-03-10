@@ -40,7 +40,7 @@ class SentinelDatabaseSeeder extends Seeder {
 		$prospect = Sentinel::getUserRepository()->create(array(
 			'email' => 'anonymous@gmail.com',
 			'password' => 'password',
-			'pseudo' => 'anonymous',
+			'first_name' => 'anonymous',
 			'ambassador' => '0',
 		));
 

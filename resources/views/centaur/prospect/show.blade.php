@@ -1,12 +1,13 @@
 @extends('Centaur::layout')
 
-@section('title', 'Edit Role')
+@section('title', 'Profil')
 
 @section('content')
 <div id="content" class="compte_visiteur">
     <div class="title">
-        VOTRE PROFIL : Benj75
+        VOTRE PROFIL : {{$user->first_name}}
     </div>
+    @if(!empty($lastConv))
     <div class="container">
         <div class="part">
             <div class="convers">
@@ -21,27 +22,29 @@
                             </div>
                             <div class="apercu">
                                 <div class="guillemet_on"></div>
-                                Merci pour ces informations ...
+                                {{$lastConv->lastMessage->getContent()}}
                                 <div class="guillemet_off"></div>
                             </div>
                         </div>
                         <div class="right">
                             <div class="nom">
-                                Benja75
+                                {{$lastConv->participant->pseudo}}
                             </div>
                             <div class="ville">
-                                Ville : Mont-Saint-Michel
+                                Ville : {{$lastConv->participant->address}}
                             </div>
                             <div class="nb-message-total">
-                                <span>15</span> messages
+                                <span>{{$lastConv->countMessages}}</span> messages
                             </div>
                         </div>
                     </div>
-                    <a class="lien" href="">
+                    <a class="lien" href="/convs/{{$lastConv->id}}">
                         VOIR LA DISCUSSION COMPLETE
                     </a>
                 </div>
                 <div class="bottom">
+                   @foreach($convs as $index => $conv)
+                    @if($index == 0)
                     <div class="parts left">
                         <div class="nb-message non">
                             Aucun nouveau message
@@ -49,20 +52,21 @@
                         <div class="contenu">
                             <div class="right">
                                 <div class="nom">
-                                    Jacques
+                                    {{$conv->participant->login}}
                                 </div>
                                 <div class="ville">
-                                    Ville : Paris
+                                    Ville : {{$conv->participant->address}}
                                 </div>
                                 <div class="nb-message-total">
-                                    <span>3</span> messages
+                                    <span>{{$conv->countMessages}}</span> messages
                                 </div>
                             </div>
                         </div>
-                        <a class="lien" href="">
+                        <a class="lien" href="/convs/{{$conv->id}}">
                             VOIR LA DISCUSSION COMPLETE
                         </a>
                     </div>
+                    @else
                     <div class="parts">
                         <div class="nb-message oui">
                             1 nouveau message
@@ -70,13 +74,13 @@
                         <div class="contenu">
                             <div class="right">
                                 <div class="nom">
-                                    Test12
+                                   {{$conv->participant->login}}
                                 </div>
                                 <div class="ville">
-                                    Ville : Marseille
+                                    Ville : {{$conv->participant->address}}
                                 </div>
                                 <div class="nb-message-total">
-                                    <span>7</span> messages
+                                    <span>{{$conv->countMessages}}</span> messages
                                 </div>
                             </div>
                         </div>
@@ -84,9 +88,12 @@
                             VOIR LA DISCUSSION COMPLETE
                         </a>
                     </div>
+                    @endif
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
+    @endif
 </div>
 @stop

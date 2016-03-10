@@ -60,8 +60,7 @@
                     <img src="{{asset('/img/choix_membre/photo.png')}}" alt="">
                 </div>
                 <div class="parts nom">{{$participant->first_name}} <br> {{$participant->last_name}}</div>
-                <div class="parts mail">{{$participant->email}}</div>
-                <Bordeaux>
+                <Br>
                 <div class="parts ville">
                     <img src="{{asset('/img/choix_membre/map.png')}}" height="15" alt="">
                     Lille

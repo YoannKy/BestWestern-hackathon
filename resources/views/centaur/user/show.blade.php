@@ -1,32 +1,40 @@
 @extends('Centaur::layout')
 
-@section('title', 'Edit User')
+@section('title', 'Profil')
 
 @section('content')
 <div id="content" class="compte">
     <div class="title">
-        VOTRE PROFIL REWARD
-        count($lastConv);
+        VOTRE PROFIL REWARDS
     </div>
     <div class="informations">
         <div class="part left">
             <div class="top">
                 <div class="parts image">
-                    <img src="img/discussion/photo_personne.png" alt="">
+                    <img src="{{asset('img/discussion/photo_personne.png')}}" alt="">
                 </div>
                 <div class="parts nom">{{$user->first_name}} <br> {{$user->last_name}}</div>
                 <div class="parts ville">
-                    <img src="img/choix_membre/map.png" height="15" alt="">
-                    Lille
+                    <img src="{{asset('img/choix_membre/map.png')}}" height="15" alt="">
+                    {{$user->address}}
                 </div>
             </div>
+            @if(count($user->hostels)===0)
+            @else
             <div class="bottom">
-                <span>Mon-Saint-Michel</span>
-                <span>Paris</span>
-                <span>Strasbourg</span>
-                <span>Marseille</span>
-                <span>Bordeaux</span>
-            </div>
+
+                @foreach($user->hostels as $hostels)
+                    @if(in_array($hostels->city, $citiesHostels) == false)
+                    <span>{{$hostels->city}}</span>
+                        <?php $citiesHostels[] = $hostels->city?>
+                    @endif
+                @endforeach
+                @foreach($user->hostels as $hostels)
+                    <span>{{$hostels->name}}</span>
+                @endforeach
+                </div>
+             @endif
+
         </div>
         <div class="part right">
             <div class="title-part">
@@ -34,7 +42,7 @@
             </div>
             <div class="bottom">
                 <div class="left">
-                    <img src="img/compte/billet.png" alt="">
+                    <img src="{{asset('img/compte/billet.png')}}" alt="">
                 </div>
                 <div class="right">
                     <div class="points">
@@ -47,6 +55,7 @@
             </div>
         </div>
     </div>
+    @if(!empty($lastConv))
     <div class="conv-lots">
         <div class="part">
             <div class="convers">
@@ -56,10 +65,10 @@
                     </div>
                     <div class="contenu">
                         <div class="left">
-                          <!--   <div class="etat">
+                            <div class="etat">
                                 Aucun nouveau message
                             </div>
-                           -->  <div class="apercu">
+                            <div class="apercu">
                                 <div class="guillemet_on"></div>
                                 {{$lastConv->lastMessage->getContent()}}
                                 <div class="guillemet_off"></div>
@@ -151,5 +160,6 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
 @stop

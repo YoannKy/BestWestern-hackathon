@@ -211,6 +211,9 @@ body{
     /*                                              CONNEXION                                                         */
     /******************************************************************************************************************/
 
+    form#content{
+        background-color: transparent;
+    }
     #content.connexion .formulaire{
         width:500px;
         margin:15px auto 0;
