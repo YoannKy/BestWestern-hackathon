@@ -18,10 +18,10 @@
         var markersArray = [];
         var prev_infobulle;
 
-        function buildInfoWindow(map,cord_hotel,marker,hotelcode,gamme,hotelname,city_name,country_name,etoiles,adresse,cp,url_occup,image_facade_hotel,price,DateRangeStart,DateRangeEnd,note,avis){
+        function buildInfoWindow(simplename, map,cord_hotel,marker,hotelcode,gamme,hotelname,city_name,country_name,etoiles,adresse,cp,url_occup,image_facade_hotel,price,DateRangeStart,DateRangeEnd,note,avis){
             infowindowBubble=null;
             google.maps.event.addListener(marker, 'click', function(){
-                contenuInfoBulle = getContentInfoBulle(hotelcode,gamme,hotelname,city_name,country_name,etoiles,adresse,cp,url_occup,image_facade_hotel,price,DateRangeStart,DateRangeEnd,note,avis);
+                contenuInfoBulle = getContentInfoBulle(simplename, hotelcode,gamme,hotelname,city_name,country_name,etoiles,adresse,cp,url_occup,image_facade_hotel,price,DateRangeStart,DateRangeEnd,note,avis);
                 if(infowindowBubble!=null) infowindowBubble.close();
                 infowindowBubble = new google.maps.InfoWindow({
                     map: map,
@@ -56,7 +56,7 @@
             });
         }
 
-        function getContentInfoBulle(hotelcode,gamme,hotelname,city_name,country_name,etoiles,adresse,cp,url_occup,image_facade_hotel,price,DateRangeStart,DateRangeEnd,note,avis){
+        function getContentInfoBulle(simplename, hotelcode,gamme,hotelname,city_name,country_name,etoiles,adresse,cp,url_occup,image_facade_hotel,price,DateRangeStart,DateRangeEnd,note,avis){
             var classPrice = "";
             if(price=="0") classPrice="noPrice";
             contenuInfoBulle = '<div class="infoBulleCarte"><h2>'+gamme+'<br/>'+hotelname.replace(gamme,"")+', '+city_name+' '+etoiles+'</h2><div class="textInfoCarte">'+adresse+', '+cp+', '+city_name+', '+country_name;
@@ -64,7 +64,7 @@
                 contenuInfoBulle = contenuInfoBulle+'<div class="prixHotel">à partir de<br /><b>'+price+'</b></div>';
             }
             contenuInfoBulle = contenuInfoBulle+'<div class="visuelInfoCarte">'+image_facade_hotel+'</div><div class="clr"></div>';
-            contenuInfoBulle = contenuInfoBulle+'<div class="btnMsg"><a href="{{route("ambassadors")}}/'+ hotelname +'">Demander l\'avis d\'un membre pour cet hôtel</a></div></br><div class="btnHotel"><a href="javascript:void(0)" class="btnForm '+classPrice+'" onclick="tc_events_2(this, \'full_carto_ouverture_fiche_detaillee\',{});Affichedetaillehotels(\''+hotelcode+'\',\''+price+'\',\''+etoiles+'\',\''+url_occup+'\',\''+DateRangeStart+'\',\''+DateRangeEnd+'\',\''+note+'\',\''+avis+'\')">Voir la fiche détaillée</a>';
+            contenuInfoBulle = contenuInfoBulle+'<div class="btnMsg"><a href="{{route("ambassadors")}}/'+ simplename +'">Demander l\'avis d\'un membre pour cet hôtel</a></div></br><div class="btnHotel"><a href="javascript:void(0)" class="btnForm '+classPrice+'" onclick="tc_events_2(this, \'full_carto_ouverture_fiche_detaillee\',{});Affichedetaillehotels(\''+hotelcode+'\',\''+price+'\',\''+etoiles+'\',\''+url_occup+'\',\''+DateRangeStart+'\',\''+DateRangeEnd+'\',\''+note+'\',\''+avis+'\')">Voir la fiche détaillée</a>';
             if(price!="0"){
                 contenuInfoBulle = contenuInfoBulle+'<a class="btnForm lienReserver" href="'+url_occup+'">Réserver</a>';
             }
@@ -145,7 +145,7 @@
                 });
                     markersArray.push(markerz[{{$count}}]);
                     $("#liste_hotels").append('<li id="opener{{$count}}" onmouseleave="outhover(this)" onmouseenter="hoverLi(this);" onclick="gotoMapMarker({{$count}}); clickLi(this);"><div class="visuelListeHotels"><a style="cursor: pointer;" class="nounderline"><img src="http://www.bestwestern.fr/public/images/pictos_miles/hotel_gamme/bw16_mini.png "/></a></div><div class="contentListeHotels"><a href="javascript:void(0)" class="nounderline">{{$hostel->category}} {{$hostel->name}}, Paris &nbsp;' + e + '<span> {{$hostel->address}}, {{$hostel->zipCode}}, {{$hostel->city}}, France</span></a></div><div class="clr"></div></li>');
-                    buildInfoWindow(maCarte, cord_hotel, markerz[{{$count}}], '{{$hostel->coord}}', '', '{{$hostel->name}}', '{{$hostel->city}}', 'France', e, '{{$hostel->address}}', '{{$hostel->zipCode}}', 'http://www.bestwestern.fr/infos_hotel.jsp?HotelCode={{$hostel->coord}}&amp;primarylangid=fr-FR&amp;RequestedCurrencyCode=EUR&amp;ChainCode=BW&amp;roomStay=1', image_facade_hotel, '0', '', '', '4', '526');
+                    buildInfoWindow('{{$hostel->name}}', maCarte, cord_hotel, markerz[{{$count}}], '{{$hostel->coord}}', '', '{{$hostel->category}} {{$hostel->name}}', '{{$hostel->city}}', 'France', e, '{{$hostel->address}}', '{{$hostel->zipCode}}', 'http://www.bestwestern.fr/infos_hotel.jsp?HotelCode={{$hostel->coord}}&amp;primarylangid=fr-FR&amp;RequestedCurrencyCode=EUR&amp;ChainCode=BW&amp;roomStay=1', image_facade_hotel, '0', '', '', '4', '526');
                     {{$count ++}}
                  @endforeach
                  getHotelsOnDraggendMap();
