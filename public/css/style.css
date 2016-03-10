@@ -19,7 +19,7 @@ body{
     background-repeat: no-repeat;
     background-position: center top;
 }
-#content:not(.conv){
+#content{
     width:960px;
     padding-top:15px;
     padding-bottom:30px;
@@ -28,14 +28,6 @@ body{
     min-height: 500px;
 }
 
-#content.conv{
-    padding-top:15px;
-    padding-bottom:30px;
-    margin:auto;
-    background-color:white;
-    height: auto;
-    position: absolute;
-}
 
     /******************************************************************************************************************/
     /*                                              ACCUEIL                                                           */
@@ -53,43 +45,46 @@ body{
         #content.accueil .ban-dial .part{
             width: 50%;
             float: left;
-            height:380px;
         }
             #content.accueil .ban-dial .part .text{
                 text-align: center;
                 padding-top:10px;
                 color:white;
                 font-size:180%;
-                height:350px;
+                height:auto;
                 margin:0;
             }
+
+
                 #content.accueil .ban-dial .part .text img{
                     height:40px;
                 }
-                #content.accueil .ban-dial .part .text .container-input{
-                    padding-top:10px;
-                    padding-bottom:10px;
+                #content.accueil .ban-dial .part .exemple{
+                    background-color:rgba(255,255,255,0.7);
+                    padding:15px;
                 }
-                    #content.accueil .ban-dial .part .text .container-input input{
-                        width:80%;
-                        background-color:silver;
-                        border:1px solid gray;
-                        font-size:25px;
-                        text-indent: 38px;
-                        font-family: "font";
-                        padding: 3px 0px;
+                    #content.accueil .ban-dial .part .guillemet_on{
+                        height:15px;
+                        background-image: url("../img/compte/guillemet_on.png");
                         background-repeat:no-repeat;
-                        background-position: 4px center;
+                        background-size: auto 100%;
+                        background-position: 0px center;
+                        margin-bottom: -10px;
                     }
-                        #content.accueil .ban-dial .part .text .container-input input.pseudo{
-                            background-image: url("../img/accueil/pseudo.png");
-                        }
-                        #content.accueil .ban-dial .part .text .container-input input.email{
-                            background-image: url("../img/accueil/email.png");
-                        }
-                        #content.accueil .ban-dial .part .text .container-input input.password{
-                            background-image: url("../img/accueil/password.png");
-                        }
+                    #content.accueil .ban-dial .part .paroles{
+                        width:80%;
+                        margin:auto;
+                        color:black;
+                        font-size:20px;
+                    }
+                    #content.accueil .ban-dial .part .guillemet_off{
+                        margin-top: -10px;
+                        height:15px;
+                        background-image: url("../img/compte/guillemet_off.png");
+                        background-repeat:no-repeat;
+                        background-size: auto 100%;
+                        background-position: right center;
+                    }
             #content.accueil .ban-dial .part .bouton{
                 text-align: center;
                 padding:10px;
@@ -103,7 +98,7 @@ body{
                 margin-top:1px;
             }
             #content.accueil .ban-dial .part.photo{
-                height:400px;
+                height:435px;
                 background-image: url('../img/accueil/photo.jpg');
                 background-repeat:no-repeat;
                 background-position: center;
@@ -212,6 +207,58 @@ body{
                     padding-bottom:10px;
                 }
 
+    /******************************************************************************************************************/
+    /*                                              CONNEXION                                                         */
+    /******************************************************************************************************************/
+
+    #content.connexion .formulaire{
+        width:500px;
+        margin:15px auto 0;
+        background-color:#002267;
+        text-align: center;
+        padding:30px;
+    }
+
+    #content.connexion .formulaire.container-input{
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+        #content.connexion .formulaire .container-input input{
+            width:80%;
+            background-color:silver;
+            border:1px solid gray;
+            font-size:25px;
+            text-indent: 38px;
+            font-family: "font";
+            padding: 3px 0px;
+            background-repeat:no-repeat;
+            background-position: 4px center;
+            margin-bottom: 20px;
+        }
+            #content.connexion .formulaire .container-input input.pseudo{
+                background-image: url("../img/accueil/pseudo.png");
+            }
+            #content.connexion .formulaire .container-input input.email{
+                background-image: url("../img/accueil/email.png");
+            }
+            #content.connexion .formulaire .container-input input.password{
+                background-image: url("../img/accueil/password.png");
+            }
+        #content.connexion .formulaire .checkbox{
+            color:#fff;
+        }
+        #content.connexion .formulaire .bouton{
+            text-align: center;
+            padding:10px;
+            background-color:#ffe42b;
+            color:black;
+            text-transform: uppercase;
+            display: block;
+            border:0px solid transparent;
+            cursor: pointer;
+            margin-top:1px;
+            width:100%;
+        }
 
     /******************************************************************************************************************/
     /*                                              DISCUSSION                                                        */
@@ -225,7 +272,6 @@ body{
             #content.discussion .part{
                 float: left;
                 width: 50%;
-                overflow-y:hidden;
             }
                 #content.discussion .part .discuss{
                     background-color:#f4f4f4;
@@ -246,7 +292,7 @@ body{
                             position: relative;
                             z-index: 9;
                         }
-                        #content.discussion .part .discuss .container-input input[type=submit]{
+                        #content.discussion .part .discuss .container-input input[type=button]{
                             background-color: #f3c100;
                             color:black;
                             padding:7px;
@@ -260,7 +306,7 @@ body{
                             border:none;
                             cursor: pointer;
                         }
-                            #content.discussion .part .discuss .container-input input[type=submit]:hover{
+                            #content.discussion .part .discuss .container-input input[type=button]:hover{
                                 background-color: #ffdc56;
                             }
                     #content.discussion .part .discuss .message{
@@ -357,11 +403,6 @@ body{
                             width:60%;
                             font-size:30px;
                         }
-                           #content.discussion .part .container-destinaire .top .parts.mail{
-                            float:none;
-                            font-size:30px;
-                        }
-                     
                         #content.discussion .part .container-destinaire .top .parts.ville{
                             width:20%;
                             font-size:15px;

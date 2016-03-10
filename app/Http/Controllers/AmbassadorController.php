@@ -18,7 +18,11 @@ class AmbassadorController extends Controller {
 	public function index() {
 		$user = Sentinel::getUser();
 		$cities = Hostel::getHostels();
-		$users = $this->userRepository->createModel()->where('id', '!=', $user->id)->where('ambassador', '=', '1')->get();
+		if ($user) {
+			$users = $this->userRepository->createModel()->where('id', '!=', $user->id)->where('ambassador', '=', '1')->get();
+		} else {
+			$users = $this->userRepository->createModel()->where('ambassador', '=', '1')->get();
+		}
 		return view('Ambassador.index', ['users' => $users, 'cities' => $cities]);
 	}
 }

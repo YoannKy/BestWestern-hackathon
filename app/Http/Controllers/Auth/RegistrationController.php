@@ -2,165 +2,203 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Mail;
-use Session;
-use Sentinel;
 use Activation;
-use App\Http\Requests;
+use App\Http\Controllers\Controller;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Mail;
+use Sentinel;
+use Session;
 
-class RegistrationController extends Controller
-{
-    /** @var Centaur\AuthManager */
-    protected $authManager;
+class RegistrationController extends Controller {
+	/** @var Centaur\AuthManager */
+	protected $authManager;
 
-    /**
-     * Create a new authentication controller instance.
-     *
-     * @return void
-     */
-    public function __construct(AuthManager $authManager)
-    {
-        $this->middleware('sentinel.guest');
-        $this->authManager = $authManager;
-    }
+	/**
+	 * Create a new authentication controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct(AuthManager $authManager) {
+		$this->middleware('sentinel.guest');
+		$this->authManager = $authManager;
+	}
 
-    /**
-     * Show the registration form
-     * @return View
-     */
-    public function getRegister()
-    {
-        return view('Centaur::auth.register');
-    }
+	/**
+	 * Show the registration form
+	 * @return View
+	 */
+	public function getRegister() {
+		return view('Centaur::auth.register');
+	}
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return Response|Redirect
-     */
-    protected function postRegister(Request $request)
-    {
-        // Validate the form data
-        $result = $this->validate($request, [
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+	/**
+	 * Create a new user instance after a valid registration.
+	 *
+	 * @param  array  $data
+	 * @return Response|Redirect
+	 */
+	protected function postRegister(Request $request) {
+		// Validate the form data
+		$result = $this->validate($request, [
+			'email' => 'required|email|max:255|unique:users',
+			'password' => 'required|confirmed|min:6',
+		]);
 
-        // Assemble registration credentials
-        $credentials = [
-            'email' => trim($request->get('email')),
-            'password' => $request->get('password'),
-        ];
+		// Assemble registration credentials
+		$credentials = [
+			'email' => trim($request->get('email')),
+			'password' => $request->get('password'),
+		];
 
-        // Attempt the registration
-        $result = $this->authManager->register($credentials);
+		// Attempt the registration
+		$result = $this->authManager->register($credentials);
 
-        if ($result->isFailure()) {
-            return $result->dispatch();
-        }
+		if ($result->isFailure()) {
+			return $result->dispatch();
+		}
 
-        // Send the activation email
-        $code = $result->activation->getCode();
-        $email = $result->user->email;
-        Mail::queue(
-            'centaur.email.welcome',
-            ['code' => $code, 'email' => $email],
-            function ($message) use ($email) {
-                $message->to($email)
-                    ->subject('Your account has been created');
-            }
-        );
+		// Send the activation email
+		$code = $result->activation->getCode();
+		$email = $result->user->email;
+		Mail::queue(
+			'centaur.email.welcome',
+			['code' => $code, 'email' => $email],
+			function ($message) use ($email) {
+				$message->to($email)
+				->subject('Your account has been created');
+			}
+		);
 
-        // Ask the user to check their email for the activation link
-        $result->setMessage('Registration complete.  Please check your email for activation instructions.');
+		// Ask the user to check their email for the activation link
+		$result->setMessage('Registration complete.  Please check your email for activation instructions.');
 
-        // There is no need to send the payload data to the end user
-        $result->clearPayload();
+		// There is no need to send the payload data to the end user
+		$result->clearPayload();
 
-        // Return the appropriate response
-        return $result->dispatch(route('dashboard'));
-    }
+		// Return the appropriate response
+		return $result->dispatch(route('dashboard'));
+	}
 
-    /**
-     * Activate a user if they have provided the correct code
-     * @param  string $code
-     * @return Response|Redirect
-     */
-    public function getActivate(Request $request, $code)
-    {
-        // Attempt the registration
-        $result = $this->authManager->activate($code);
+	public function postRegisterProspect(Request $request) {
+		// Validate the form data
+		$result = $this->validate($request, [
+			'pseudo' => 'required',
+			'email' => 'required|email|max:255|unique:users',
+			'password' => 'required|min:6',
+		]);
 
-        if ($result->isFailure()) {
-            // Normally an exception would trigger a redirect()->back() However,
-            // because they get here via direct link, back() will take them
-            // to "/";  I would prefer they be sent to the login page.
-            $result->setRedirectUrl(route('auth.login.form'));
-            return $result->dispatch();
-        }
+		// Assemble registration credentials
+		$credentials = [
+			'first_name' => $request->get('pseudo'),
+			'email' => trim($request->get('email')),
+			'password' => $request->get('password'),
+		];
 
-        // Ask the user to check their email for the activation link
-        $result->setMessage('Registration complete.  You may now log in.');
+		// Attempt the registration
+		$result = $this->authManager->register($credentials);
 
-        // There is no need to send the payload data to the end user
-        $result->clearPayload();
+		if ($result->isFailure()) {
+			return $result->dispatch();
+		}
 
-        // Return the appropriate response
-        return $result->dispatch(route('dashboard'));
-    }
+		// Send the activation email
+		$code = $result->activation->getCode();
+		$result = $this->authManager->activate($code);
+		// $email = $result->user->email;
+		// Mail::queue(
+		// 	'centaur.email.welcome',
+		// 	['code' => $code, 'email' => $email],
+		// 	function ($message) use ($email) {
+		// 		$message->to($email)
+		// 		->subject('Your account has been created');
+		// 	}
+		// );
 
-    /**
-     * Show the Resend Activation form
-     * @return View
-     */
-    public function getResend()
-    {
-        return view('Centaur::auth.resend');
-    }
+		// Ask the user to check their email for the activation link
+		// $result->setMessage('Registration complete.  Please check your email for activation instructions.');
 
-    /**
-     * Handle a resend activation request
-     * @return Response|Redirect
-     */
-    public function postResend(Request $request)
-    {
-        // Validate the form data
-        $result = $this->validate($request, [
-            'email' => 'required|email|max:255'
-        ]);
+		// There is no need to send the payload data to the end user
+		$result->clearPayload();
+		$auth = $this->authManager->authenticate($credentials, null);
+		// Return the appropriate response
+		$userId = Session::get('id_user');
+		return redirect('convs/' . $userId . '/create');
+	}
 
-        // Fetch the user in question
-        $user = Sentinel::findUserByCredentials(['email' => $request->get('email')]);
+	/**
+	 * Activate a user if they have provided the correct code
+	 * @param  string $code
+	 * @return Response|Redirect
+	 */
+	public function getActivate(Request $request, $code) {
+		// Attempt the registration
+		$result = $this->authManager->activate($code);
 
-        // Only send them an email if they have a valid, inactive account
-        if (!Activation::completed($user)) {
-            // Generate a new code
-            $activation = Activation::create($user);
+		if ($result->isFailure()) {
+			// Normally an exception would trigger a redirect()->back() However,
+			// because they get here via direct link, back() will take them
+			// to "/";  I would prefer they be sent to the login page.
+			$result->setRedirectUrl(route('auth.login.form'));
+			return $result->dispatch();
+		}
 
-            // Send the email
-            $code = $activation->getCode();
-            $email = $user->email;
-            Mail::queue(
-                'auth.email.welcome',
-                ['code' => $code, 'email' => $email],
-                function ($message) use ($email) {
-                    $message->to($email)
-                        ->subject('Account Activation Instructions');
-                }
-            );
-        }
+		// Ask the user to check their email for the activation link
+		$result->setMessage('Registration complete.  You may now log in.');
 
-        $message = 'New instructions will be sent to that email address if it is associated with a inactive account.';
+		// There is no need to send the payload data to the end user
+		$result->clearPayload();
 
-        if ($request->ajax()) {
-            return response()->json(['message' => $message], 200);
-        }
+		// Return the appropriate response
+		return $result->dispatch(route('dashboard'));
+	}
 
-        Session::flash('success', $message);
-        return redirect('/dashboard');
-    }
+	/**
+	 * Show the Resend Activation form
+	 * @return View
+	 */
+	public function getResend() {
+		return view('Centaur::auth.resend');
+	}
+
+	/**
+	 * Handle a resend activation request
+	 * @return Response|Redirect
+	 */
+	public function postResend(Request $request) {
+		// Validate the form data
+		$result = $this->validate($request, [
+			'email' => 'required|email|max:255',
+		]);
+
+		// Fetch the user in question
+		$user = Sentinel::findUserByCredentials(['email' => $request->get('email')]);
+
+		// Only send them an email if they have a valid, inactive account
+		if (!Activation::completed($user)) {
+			// Generate a new code
+			$activation = Activation::create($user);
+
+			// Send the email
+			$code = $activation->getCode();
+			$email = $user->email;
+			Mail::queue(
+				'auth.email.welcome',
+				['code' => $code, 'email' => $email],
+				function ($message) use ($email) {
+					$message->to($email)
+					->subject('Account Activation Instructions');
+				}
+			);
+		}
+
+		$message = 'New instructions will be sent to that email address if it is associated with a inactive account.';
+
+		if ($request->ajax()) {
+			return response()->json(['message' => $message], 200);
+		}
+
+		Session::flash('success', $message);
+		return redirect('/dashboard');
+	}
 }

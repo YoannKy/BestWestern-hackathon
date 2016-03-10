@@ -20,12 +20,14 @@ Route::group(['middleware' => ['web']], function () {
 	// Authorization
 	Route::get('/login', ['as' => 'auth.login.form', 'uses' => 'Auth\SessionController@getLogin']);
 	Route::post('/login', ['as' => 'auth.login.attempt', 'uses' => 'Auth\SessionController@postLogin']);
-	Route::post('/prospect/login', ['as' => 'auth.login.prospect.attempt', 'uses' => 'Auth\SessionController@postLoginProspect']);
+	Route::get('prospect/login', ['as' => 'auth.login.prospect.form', 'uses' => 'Auth\SessionController@getLoginProspect']);
+	Route::post('prospect/login', ['as' => 'auth.login.prospect.attempt', 'uses' => 'Auth\SessionController@postLoginProspect']);
 	Route::get('/logout', ['as' => 'auth.logout', 'uses' => 'Auth\SessionController@getLogout']);
 
 	// Registration
 	Route::get('register', ['as' => 'auth.register.form', 'uses' => 'Auth\RegistrationController@getRegister']);
 	Route::post('register', ['as' => 'auth.register.attempt', 'uses' => 'Auth\RegistrationController@postRegister']);
+	Route::post('prospect/register', ['as' => 'auth.register.prospect.attempt', 'uses' => 'Auth\RegistrationController@postRegisterProspect']);
 
 	// Activation
 	Route::get('activate/{code}', ['as' => 'auth.activation.attempt', 'uses' => 'Auth\RegistrationController@getActivate']);
@@ -51,20 +53,17 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/map', ['as' => 'map', 'uses' => 'HostelController@index']);
 
 	// Dashboard
-	Route::get('dashboard', ['as' => 'dashboard', 'uses' => function () {
-		return view('centaur.dashboard');
-	}]);
+	Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@index']);
 
 	Route::get('convs', ['as' => 'convs.list', 'uses' => 'ConvController@index']);
 
-	Route::get('convs/{id_conv}', 'ConvController@show');
+	Route::get('convs/{id_conv}', ['as' => 'convs.show', 'uses' => 'ConvController@show']);
 
 	Route::post('convs/{id_conv}/add', 'ConvController@add');
 
 	Route::get('ambassadors', ['as' => 'ambassadors', 'uses' => 'AmbassadorController@index']);
 
 	Route::get('convs/{id_user}/create', 'ConvController@create');
-
 
 });
 

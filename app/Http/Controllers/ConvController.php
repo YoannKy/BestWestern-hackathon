@@ -61,6 +61,10 @@ class ConvController extends Controller {
 
 	public function create($userId) {
 		$user = Sentinel::getUser();
+		if (!$user) {
+			Session::put('id_user', $userId);
+			return redirect('/prospect/login');
+		}
 		$conv = TBMsg::createConversation(array($user->id, $userId));
 		return redirect('/convs/' . $conv['convId']);
 	}

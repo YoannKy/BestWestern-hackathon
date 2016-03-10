@@ -6,35 +6,29 @@
     <div id="content" class="accueil">
         <img src="img/accueil/ban_1.jpg" alt="">
         <div class="ban-dial">
-         <form accept-charset="UTF-8" role="form" class="part" method="post" action="{{ route('auth.login.prospect.attempt') }}">
-            <div class="text">
-                    <img src="{{asset('img/accueil/pouces.png')}}" alt="">
+          <form class="part" action="{{route('ambassadors')}}" method="GET">
+                <div class="text">
+                    <img src="img/accueil/pouces.png" alt="">
                     <br>
                     Et si un membre vous aidait
                     <br/>
                     à choisir votre destination?
                     <br>
-                    <img src="{{asset('img/accueil/bulles.png')}}" alt="">
-                     <div class="container-input">
-                        <input class="pseudo" placeholder="Votre pseudo..." name="pseudo" type="text" value="{{ old('pseudo') }}">
-                    </div>
-                    <div class="container-input">
-                        <input class=" email" placeholder="Votre email..." name="email" type="text" value="{{ old('email') }}">
-                    </div>
-                    <div class="container-input">
-                        <input class="password" placeholder="Votre mot de passe..." name="password" type="password" value="">
-                    </div>
-                     <div class="checkbox">
-                  <!--       <label>
-                            <input name="remember" type="checkbox" value="true" {{ old('remember') == 'true' ? 'checked' : ''}}> Se souvenir de moi
-                        </label> -->
-                    </div>
-                    <input name="_token" value="{{ csrf_token() }}" type="hidden">
-                   </div>
-                    <input class="bouton" type="submit" value="Contacter un membre">
-                    <p style="margin-top:5px; margin-bottom:0"><a href="{{ route('auth.password.request.form') }}" type="submit">Forgot your password?</a></p>
+                    <img src="img/accueil/bulles.png" alt="">
+                    <p class="small">Nombre de messages echangés sur la plateforme: {{$count}}</p>
 
-                </form>
+                    <div class="exemple">
+                        <img src="img/choix_membre/photo.png" alt="">
+                        <div class="guillemet_on"></div>
+                        <div class="paroles">
+                            Je vous conseille cet hôtel au coeur du Mont-Saint-Michel.
+                            Simplement parfait !
+                        </div>
+                        <div class="guillemet_off"></div>
+                    </div>
+                </div>
+                <input type="submit" class="bouton" value="Contacter un membre">
+            </form>
             <div class="part photo"></div>
         </div>
         <img src="img/accueil/ban_2.jpg" alt="">

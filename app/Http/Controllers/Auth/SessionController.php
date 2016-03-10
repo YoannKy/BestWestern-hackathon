@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-
-use Sentinel;
-use TBMsg;
-use Session;
 use App\Http\Controllers\Controller;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
+use Sentinel;
+use Session;
+use TBMsg;
 
 class SessionController extends Controller {
 	/** @var Centaur\AuthManager */
@@ -30,6 +29,10 @@ class SessionController extends Controller {
 	 */
 	public function getLogin() {
 		return view('Centaur::auth.login');
+	}
+
+	public function getLoginProspect() {
+		return view('Centaur::prospect.login');
 	}
 
 	/**
@@ -55,9 +58,10 @@ class SessionController extends Controller {
 		// Attempt the Login
 		$result = $this->authManager->authenticate($credentials, $remember);
 		if (Sentinel::getUSer()) {
-			$path = session()->pull('url.intended', route('ambassadors'));
+			$userId = Session::get('id_user');
+			$path = session()->pull('url.intended', 'convs/' . $userId . '/create');
 		} else {
-			$path = session()->pull('url.intended', route('dashboard'));
+			$path = session()->pull('url.intended', route('auth.login.prospect.form'));
 		}
 		// Return the appropriate response
 		return $result->dispatch($path);
@@ -86,8 +90,8 @@ class SessionController extends Controller {
 			Session::put('conv', $conv);
 		}
 		$path = session()->pull('url.intended', route('dashboard'));
-        return $result->dispatch($path);
-    }
+		return $result->dispatch($path);
+	}
 
 	/**
 	 * Handle a Logout Request
