@@ -64,7 +64,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::get('ambassadors', ['as' => 'ambassadors', 'uses' => 'AmbassadorController@index']);
 
-	Route::get('convs/{id_user}/create', 'ConvController@create');
+	Route::get('convs/{id_user}/{id_hostel}/create', 'ConvController@create');
 
 });
 
