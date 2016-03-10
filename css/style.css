@@ -55,33 +55,37 @@ body{
                 height:350px;
                 margin:0;
             }
+
+
                 #content.accueil .ban-dial .part .text img{
                     height:40px;
                 }
-                #content.accueil .ban-dial .part .text .container-input{
-                    padding-top:10px;
-                    padding-bottom:10px;
+                #content.accueil .ban-dial .part .exemple{
+                    background-color:rgba(255,255,255,0.7);
+                    padding:15px;
                 }
-                    #content.accueil .ban-dial .part .text .container-input input{
-                        width:80%;
-                        background-color:silver;
-                        border:1px solid gray;
-                        font-size:25px;
-                        text-indent: 38px;
-                        font-family: "font";
-                        padding: 3px 0px;
+                    #content.accueil .ban-dial .part .guillemet_on{
+                        height:15px;
+                        background-image: url("../img/compte/guillemet_on.png");
                         background-repeat:no-repeat;
-                        background-position: 4px center;
+                        background-size: auto 100%;
+                        background-position: 0px center;
+                        margin-bottom: -10px;
                     }
-                        #content.accueil .ban-dial .part .text .container-input input.pseudo{
-                            background-image: url("../img/accueil/pseudo.png");
-                        }
-                        #content.accueil .ban-dial .part .text .container-input input.email{
-                            background-image: url("../img/accueil/email.png");
-                        }
-                        #content.accueil .ban-dial .part .text .container-input input.password{
-                            background-image: url("../img/accueil/password.png");
-                        }
+                    #content.accueil .ban-dial .part .paroles{
+                        width:80%;
+                        margin:auto;
+                        color:black;
+                        font-size:20px;
+                    }
+                    #content.accueil .ban-dial .part .guillemet_off{
+                        margin-top: -10px;
+                        height:15px;
+                        background-image: url("../img/compte/guillemet_off.png");
+                        background-repeat:no-repeat;
+                        background-size: auto 100%;
+                        background-position: right center;
+                    }
             #content.accueil .ban-dial .part .bouton{
                 text-align: center;
                 padding:10px;
@@ -204,6 +208,55 @@ body{
                     padding-bottom:10px;
                 }
 
+    /******************************************************************************************************************/
+    /*                                              CONNEXION                                                         */
+    /******************************************************************************************************************/
+
+    #content.connexion .formulaire{
+        width:500px;
+        margin:15px auto 0;
+        background-color:#002267;
+        text-align: center;
+        padding:30px;
+    }
+
+    #content.connexion .formulaire.container-input{
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+        #content.connexion .formulaire .container-input input{
+            width:80%;
+            background-color:silver;
+            border:1px solid gray;
+            font-size:25px;
+            text-indent: 38px;
+            font-family: "font";
+            padding: 3px 0px;
+            background-repeat:no-repeat;
+            background-position: 4px center;
+            margin-bottom: 20px;
+        }
+            #content.connexion .bformulaire .container-input input.pseudo{
+                background-image: url("../img/accueil/pseudo.png");
+            }
+            #content.connexion .formulaire .container-input input.email{
+                background-image: url("../img/accueil/email.png");
+            }
+            #content.connexion .formulaire .container-input input.password{
+                background-image: url("../img/accueil/password.png");
+            }
+        #content.connexion .formulaire .bouton{
+            text-align: center;
+            padding:10px;
+            background-color:#ffe42b;
+            color:black;
+            text-transform: uppercase;
+            display: block;
+            border:0px solid transparent;
+            cursor: pointer;
+            margin-top:1px;
+            width:100%;
+        }
 
     /******************************************************************************************************************/
     /*                                              DISCUSSION                                                        */
