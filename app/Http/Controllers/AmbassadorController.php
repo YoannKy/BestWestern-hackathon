@@ -21,7 +21,7 @@ class AmbassadorController extends Controller {
 		$cities = Hostel::getHostels();
 		$hostel = Hostel::getHostel($name);
 		$city = "";
-		if (isset($hostel[0]->city)) {
+		if (isset($hostel[0]) && isset($hostel[0]->city)) {
 			$city = $hostel[0]->city;
 		}
 		$users = User::where('id', '!=', $user->id)->where('ambassador', '=', '1')->get();
