@@ -107,7 +107,6 @@
                       var hasNotVisited = false;
                       var cities = $(this).find('.villes span');
                       cities.each(function(){
-                          console.log(hostel.split('-')[0]);
                           if($(this).html() === hostel.split(' - ')[0]) {
                               count += 1;
                           }
