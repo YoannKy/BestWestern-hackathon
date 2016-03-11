@@ -61,7 +61,7 @@
                 <Br>
                 <div class='parts ville'>
                     <img src='{{asset('/img/choix_membre/map.png')}}' height='15' alt=''>
-                    Lille
+                    {{$participant->address}}
                 </div>
             </div>
             <div class='bottom'>
