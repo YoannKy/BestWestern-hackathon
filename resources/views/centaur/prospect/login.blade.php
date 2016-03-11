@@ -20,7 +20,7 @@
                 <input name="create" id="create_account" type="checkbox" value="true" > Créer un compte
             </label>
         </div>
-        <input name="_token" value="V4jPd6UQfJTKyXl5dQIFz6Xv5YZDmUQRzRVM0ixG" type="hidden">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input class="bouton" type="submit" value="Connexion">
     </div>
 </form>
