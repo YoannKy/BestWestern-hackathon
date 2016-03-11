@@ -10,8 +10,12 @@
 
                 <select id="city">
                     <option selected="selected"></option>
+                    <?php $citiesArray = array();?>
                     @foreach($cities as $city)
-                    <option value="{{$city['city']}}">{{$city['city']}}</option>
+                        @if(in_array($city['city'], $citiesArray) == false)
+                            <option value="{{$city['city']}}">{{$city['city']}}</option>
+                            <?php $citiesArray[] = $city['city']?>
+                        @endif
                     @endforeach
                 </select>
             </div>

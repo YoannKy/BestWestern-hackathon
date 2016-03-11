@@ -20,7 +20,7 @@ body{
     background-position: center top;
 }
 #content:not(.choix-membre){
-    width:960px;
+   width:1115px;
     padding-top:15px;
     padding-bottom:30px;
     margin:auto;
@@ -28,6 +28,7 @@ body{
     min-height: 500px;
 }
 #content.choix-membre{
+   width:1115px;
     padding-top:15px;
     padding-bottom:30px;
     margin:auto;

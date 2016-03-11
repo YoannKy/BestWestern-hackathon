@@ -2,11 +2,11 @@
 @extends('Centaur::layout')
 @section('title', 'Messages')
 @section('content')
-<div class="row">
-<div id="content" class="discussion">
-    <div class="part">
-        <div class="discuss">
-            <div class="container-input">
+<div class='row'>
+<div id='content' class='discussion'>
+    <div class='part'>
+        <div class='discuss'>
+            <div class='container-input'>
             {{ Form::open(array('url' => 'convs/'.$convId.'/add')) }}
 				{{Form::text('message',null,array('required'=>'required'))}}
 				{{Form::hidden('id_conv',$convId)}}
@@ -15,20 +15,20 @@
 			</div>
              @foreach($messages as $message)
 				 @if(Sentinel::getUser()->id == $message->senderId)
-				 	<div class="message receveur">
-                		<div class="container">
+				 	<div class='message receveur'>
+                		<div class='container'>
                 			{{$message->content}}
                 		</div>
-			            <div class="date">
+			            <div class='date'>
 		                	{{$message->created}}
 			            </div>
                 	</div>
 				 @else
-				 	 <div class="message destinataire">
-                		<div class="container">
+				 	 <div class='message destinataire'>
+                		<div class='container'>
                 			{{$message->content}}
                 		</div>
-		                <div class="date">
+		                <div class='date'>
 		                	{{$message->created}}
 		                </div>
                 	</div>
@@ -36,35 +36,35 @@
 			@endforeach
         </div>
     </div>
-    <div class="part">
-        <div class="container-hotel">
-            <div class="top hotel-top">
-                <div class="left"></div>
-                <div class="right">
-                    <div class="title">
-                        <div class="category"></div>
-                        <div class="name"></div>
+    <div class='part'>
+        <div class='container-hotel'>
+            <div class='top hotel-top'>
+                <div class='left'></div>
+                <div class='right'>
+                    <div class='title'>
+                        <div class='category'></div>
+                        <div class='name'></div>
                     </div>
-                    <div class="details">
-                        <div class="address"></div>
-                        <div class="zipCode"></div>
+                    <div class='details'>
+                        <div class='address'></div>
+                        <div class='zipCode'></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container-destinaire">
-            <div class="top">
-                <div class="parts image">
-                    <img src="{{asset('/img/choix_membre/photo.png')}}" alt="">
+        <div class='container-destinaire'>
+            <div class='top'>
+                <div class='parts image'>
+                    <img src='{{asset('/img/choix_membre/photo.png')}}' alt=''>
                 </div>
-                <div class="parts nom">{{$participant->first_name}} <br> {{$participant->last_name}}</div>
+                <div class='parts nom'>{{$participant->first_name}} <br> {{$participant->last_name}}</div>
                 <Br>
-                <div class="parts ville">
-                    <img src="{{asset('/img/choix_membre/map.png')}}" height="15" alt="">
+                <div class='parts ville'>
+                    <img src='{{asset('/img/choix_membre/map.png')}}' height='15' alt=''>
                     Lille
                 </div>
             </div>
-            <div class="bottom">
+            <div class='bottom'>
                 <?php $citiesHostels = array();?>
                 @if(count($participant->hostels)===0)
 
@@ -88,21 +88,22 @@
         var city = localStorage.getItem('city');
         var address = localStorage.getItem('address').split(' - ');
 
-        if(localStorage.getItem('hostel') != "") {
-            $(".category").text(address[0]);
-            $(".name").text(hostel);
-            if(address != "undefined") {
-                $(".address").text(address[1]);
-                $(".zipCode").text(address[2]);
+        if(localStorage.getItem('hostel') != '') {
+            $('.category').text(address[0]);
+            $('.name').text(hostel);
+            if(address != 'undefined') {
+                $('.address').text(address[1]);
+                $('.zipCode').text(address[2]);
             }
         } else {
             $('.left').removeClass('left');
             $('.details').removeClass('details');
-            $('.hotel-top').css("background-color","#FFFFFF");
-            if(city != "") {
+            $('.hotel-top').css('background-color','#FFFFFF');
+            if(city != '') {
                 $('.title').text(city);
             } else {
-                $('.hotel-top').text("");
+                $('.hotel-top').text('');
+                $('.container-hotel').css('margin-bottom','0')
             }
 
         }
