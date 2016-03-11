@@ -137,21 +137,26 @@
               .change(function () {
                   var hostel = $( "select#hostel option:selected").text();
                   var ambassador = $('.people .part');
-                  ambassador.each(function(index){
-                      var count = 0;
-                      var hasNotVisited = false;
-                      var cities = $(this).find('.villes span');
-                      cities.each(function(){
-                          if($(this).html() === hostel.split(' - ')[0]) {
-                              count += 1;
+                  if(hostel === ""){
+                      ambassador.show();
+                  }
+                  else {
+                      ambassador.each(function (index) {
+                          var count = 0;
+                          var hasNotVisited = false;
+                          var cities = $(this).find('.villes span');
+                          cities.each(function () {
+                              if ($(this).html() === hostel.split(' - ')[0]) {
+                                  count += 1;
+                              }
+                          });
+                          if (count === 0) {
+                              $(this).hide();
+                          } else {
+                              $(this).show();
                           }
                       });
-                      if(count === 0){
-                          $(this).hide();
-                      } else {
-                          $(this).show();
-                      }
-                  });
+                  }
               });
       @if($name != "" && $cityDefault != "")
         <?php
