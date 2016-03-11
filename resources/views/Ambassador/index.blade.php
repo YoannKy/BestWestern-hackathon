@@ -22,8 +22,7 @@
                 <select id="hostel">
                     <option selected="selected"></option>
                     @foreach($cities as $city)
-                        <option value="{{$city['name']}}">{{$city['name']}} - {{$city['city']}}</option>
-
+                        <option id="{{$city['address']}} - {{$city['zipCode']}} {{$city['city']}}" value="{{$city['name']}}">{{$city['name']}} - {{$city['city']}}</option>
                     @endforeach
                 </select>
             </div>
@@ -63,7 +62,7 @@
                         @endif
                     </div>
                 </div>
-                <a class="lien" href="/convs/{{$user->id}}/create">
+                <a class="lien" href="convs/{{$user->id}}/create">
                     Contacter {{$user->first_name}}
                 </a>
             </div>
@@ -95,12 +94,16 @@
 
       $( "#city" )
               .change(function () {
+                  $( "select#hostel" ).val("");
                   var city = $( "select#city option:selected").text();
                   var ambassador = $('.people .part');
                   if(city === ""){
-
-                  $("#hostel").val('');
+                      $("#hostel").val('');
                       ambassador.show();
+                      var hostelsDefault = $('#hostel option');
+                      hostelsDefault.each(function(index){
+                              $(this).show();
+                      });
                   } else {
                   ambassador.each(function(index){
                       var count = 0;
@@ -152,9 +155,14 @@
               });
       @if($name != "" && $cityDefault != "")
         <?php
-echo 'setOption();';
-?>
+        echo 'setOption();';
+        ?>
       @endif
+          $('a').click(function() {
+                  localStorage.setItem('hostel', $( "select#hostel option:selected").text().split(' - ')[0]);
+                  localStorage.setItem('city', $( "select#city option:selected").text());
+                  localStorage.setItem('address', $( "select#hostel option:selected").attr('id'));
+              });
   </script>
 
 @stop

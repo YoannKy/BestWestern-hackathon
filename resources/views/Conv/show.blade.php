@@ -38,18 +38,17 @@
     </div>
     <div class="part">
         <div class="container-hotel">
-            <div class="top">
+            <div class="top hotel-top">
                 <div class="left"></div>
                 <div class="right">
                     <div class="title">
-                        BEST WESTERN PLUS
+                        BEST WESTERN
                         <br>
-                        Hotel de la baie
+                        <div class="name"></div>
                     </div>
                     <div class="details">
-                        45 rue du Chemin
-                        <br>
-                        50170 Mont-Saint-Michel
+                        <div class="address"></div>
+                        <div class="zipCode"></div>
                     </div>
                 </div>
             </div>
@@ -67,13 +66,42 @@
                 </div>
             </div>
             <div class="bottom">
-                <span>Mon-Saint-Michel</span>
-                <span>Paris</span>
-                <span>Strasbourg</span>
-                <span>Marseille</span>
-                <span>Bordeaux</span>
+                <?php $citiesHostels = array();?>
+                @if(count($participant->hostels)===0)
+
+                @else
+                    @foreach($participant->hostels as $hostels)
+                        @if(in_array($hostels->city, $citiesHostels) == false)
+                            <span>{{$hostels->city}}</span>
+                            <?php $citiesHostels[] = $hostels->city?>
+                        @endif
+                    @endforeach
+                    @foreach($participant->hostels as $hostels)
+                        <span>{{$hostels->name}}</span>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
 </div>
+    <script>
+        var hostel = localStorage.getItem('hostel');
+        var city = localStorage.getItem('city');
+        var address = localStorage.getItem('address').split(' - ');
+
+        if(localStorage.getItem('hostel') != "") {
+            $(".name").text(hostel);
+            if(address != "undefined") {
+                $(".address").text(address[0]);
+                $(".zipCode").text(address[1]);
+            }
+        } else {
+            $('.title').text(city);
+            $('.left').removeClass('left');
+            $('.details').removeClass('details');
+            $('.hotel-top').css("background-color","#FFFFFF");
+        }
+
+    </script>
+
 @stop

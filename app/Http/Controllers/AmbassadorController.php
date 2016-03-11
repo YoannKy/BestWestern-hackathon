@@ -10,6 +10,7 @@ class AmbassadorController extends Controller {
 	public function index($name = null) {
 		$user = Sentinel::getUser();
 		$cities = Hostel::getHostels();
+
 		if ($user) {
 			$users = User::where('id', '!=', $user->id)->where('ambassador', '=', '1')->get();
 		} else {

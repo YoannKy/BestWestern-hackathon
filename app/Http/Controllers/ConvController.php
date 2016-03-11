@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use Cartalyst\Sentinel\Users\IlluminateUserRepository;
 use Illuminate\Http\Request;
 use Sentinel;
@@ -15,7 +16,8 @@ class ConvController extends Controller {
 
 	public function __construct() {
 		// Dependency Injection
-		$this->userRepository = app()->make('sentinel.users');
+		//$this->userRepository = app()->make('sentinel.users');
+		$this->userRepository = User::all();
 	}
 
 	public function index() {
@@ -31,7 +33,7 @@ class ConvController extends Controller {
 		$participants = array_merge($participants, $conv->getAllParticipants());
 		//making sure each user appears once
 		$participants = array_unique($participants);
-		$participant = $this->userRepository->whereIn('id', $participants)->where('id', '!=', $user->id)->first();
+		$participant = User::whereIn('id', $participants)->where('id', '!=', $user->id)->first();
 		$history = [];
 		$getNumOfParticipants = $conv->getNumOfParticipants();
 		$participants = $conv->getAllParticipants();
