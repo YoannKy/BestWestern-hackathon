@@ -105,8 +105,9 @@ class RegistrationController extends Controller {
 		// Send the activation email
 		$code = $result->activation->getCode();
 		$result = $this->authManager->activate($code);
-		// $email = $result->user->email;
-		// Mail::queue(
+		$auth = $this->authManager->authenticate($credentials, null);
+		// $email = $auth->email;
+		// Mail::send(
 		// 	'centaur.email.welcome',
 		// 	['code' => $code, 'email' => $email],
 		// 	function ($message) use ($email) {
@@ -115,12 +116,11 @@ class RegistrationController extends Controller {
 		// 	}
 		// );
 
-		// Ask the user to check their email for the activation link
+		// // Ask the user to check their email for the activation link
 		// $result->setMessage('Registration complete.  Please check your email for activation instructions.');
 
 		// There is no need to send the payload data to the end user
 		$result->clearPayload();
-		$auth = $this->authManager->authenticate($credentials, null);
 		// Return the appropriate response
 		$userId = Session::get('id_user');
 		return redirect('convs/' . $userId . '/create');

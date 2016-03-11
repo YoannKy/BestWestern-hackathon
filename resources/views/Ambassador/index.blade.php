@@ -63,7 +63,7 @@
                         @endif
                     </div>
                 </div>
-                <a class="lien" href="/convs/{{$user->id}}/create">
+                <a class="lien" href="{{route('convs.create',$user->id)}}">
                     Contacter {{$user->first_name}}
                 </a>
             </div>
