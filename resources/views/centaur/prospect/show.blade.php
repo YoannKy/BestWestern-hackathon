@@ -28,7 +28,7 @@
                         </div>
                         <div class="right">
                             <div class="nom">
-                                {{$lastConv->participant->pseudo}}
+                                {{$lastConv->participant->first_name}}
                             </div>
                             <div class="ville">
                                 Ville : {{$lastConv->participant->address}}
