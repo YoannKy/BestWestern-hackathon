@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Hostel;
 use App\Models\User;
 use Cartalyst\Sentinel\Users\IlluminateUserRepository;
 use Illuminate\Http\Request;
@@ -22,8 +23,22 @@ class ConvController extends Controller {
 
 	public function index() {
 		$user = Sentinel::getUser();
+		$cities = Hostel::getHostels();
 		$convs = TBMsg::getUserConversations($user->id);
-		return view('Conv.index', ['convs' => $convs]);
+		$participants = [];
+		$participant = "";
+		foreach ($convs as $conv) {
+			$participants = array_merge($participants, $conv->getAllParticipants());
+			//making sure each user appears once
+			$participants = array_unique($participants);
+			$participant = User::whereIn('id', $participants)->where('id', '!=', $user->id)->first();
+		}
+		$hostel = Hostel::getHostel(null);
+		$city = "";
+		if (isset($hostel[0]) && isset($hostel[0]->city)) {
+			$city = $hostel[0]->city;
+		}
+		return view('Conv.index', ['convs' => $convs, 'user' => $participant, 'cities' => $cities, 'cityDefault' => $city]);
 	}
 
 	public function show($convId) {
