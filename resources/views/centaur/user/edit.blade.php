@@ -12,13 +12,9 @@
             <div class="panel-body">
                 <form accept-charset="UTF-8" role="form" method="post" action="{{ route('user.update', $user->id) }}">
                 <fieldset>
-                     <div class="form-group {{ ($errors->has('pseudo')) ? 'has-error' : '' }}">
+                     <div class="form-group {{ ($errors->has('address')) ? 'has-error' : '' }}">
                         <input class="form-control" placeholder="adresse" name="address" type="text" value="{{ $user->address }}" />
-                        {!! ($errors->has('first_name') ? $errors->first('first_name', '<p class="text-danger">:message</p>') : '') !!}
-                    </div>
-                    <div class="form-group {{ ($errors->has('pseudo')) ? 'has-error' : '' }}">
-                        <input class="form-control" placeholder="pseudonyme" name="first_name" type="text" value="{{ $user->pseudo }}" />
-                        {!! ($errors->has('first_name') ? $errors->first('first_name', '<p class="text-danger">:message</p>') : '') !!}
+                        {!! ($errors->has('address') ? $errors->first('address', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
                     <div class="form-group {{ ($errors->has('first_name')) ? 'has-error' : '' }}">
                         <input class="form-control" placeholder="Prénom" name="first_name" type="text" value="{{ $user->first_name }}" />

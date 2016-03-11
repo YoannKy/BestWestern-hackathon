@@ -204,7 +204,8 @@ class UserController extends Controller {
 	}
 
 	public function selfupdate(Request $request) {
-		$id = Sentinel::getUSer()->id;
+		$user = Sentinel::getUSer();
+		$id = $user->id;
 		// Decode the user id
 		// $id = $this->decode($hash);
 
@@ -217,7 +218,6 @@ class UserController extends Controller {
 		// Assemble the updated attributes
 		$attributes = [
 			'address' => $request->get('address', null),
-			'pseudo' => $request->get('pseudo', null),
 			'email' => trim($request->get('email')),
 			'first_name' => $request->get('first_name', null),
 			'last_name' => $request->get('last_name', null),
@@ -229,7 +229,7 @@ class UserController extends Controller {
 		}
 
 		// Fetch the user object
-		$user = $this->userRepository->findById($id);
+		// $user = $this->userRepository->findById($id);
 		if (!$user) {
 			if ($request->ajax()) {
 				return response()->json("Invalid user.", 422);
@@ -240,7 +240,8 @@ class UserController extends Controller {
 
 		// Update the user
 		$user = $this->userRepository->update($user, $attributes);
-
+		$user->address = $attributes['address'];
+		$user->save();
 		// All done
 		if ($request->ajax()) {
 			return response()->json(['user' => $user], 200);
