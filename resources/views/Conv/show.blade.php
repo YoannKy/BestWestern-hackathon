@@ -42,8 +42,7 @@
                 <div class="left"></div>
                 <div class="right">
                     <div class="title">
-                        BEST WESTERN
-                        <br>
+                        <div class="category"></div>
                         <div class="name"></div>
                     </div>
                     <div class="details">
@@ -90,16 +89,22 @@
         var address = localStorage.getItem('address').split(' - ');
 
         if(localStorage.getItem('hostel') != "") {
+            $(".category").text(address[0]);
             $(".name").text(hostel);
             if(address != "undefined") {
-                $(".address").text(address[0]);
-                $(".zipCode").text(address[1]);
+                $(".address").text(address[1]);
+                $(".zipCode").text(address[2]);
             }
         } else {
-            $('.title').text(city);
             $('.left').removeClass('left');
             $('.details').removeClass('details');
             $('.hotel-top').css("background-color","#FFFFFF");
+            if(city != "") {
+                $('.title').text(city);
+            } else {
+                $('.hotel-top').text("");
+            }
+
         }
 
     </script>

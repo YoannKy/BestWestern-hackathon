@@ -22,7 +22,7 @@
                 <select id="hostel">
                     <option selected="selected"></option>
                     @foreach($cities as $city)
-                        <option id="{{$city['address']}} - {{$city['zipCode']}} {{$city['city']}}" value="{{$city['name']}}">{{$city['name']}} - {{$city['city']}}</option>
+                        <option id="{{$city['category']}} - {{$city['address']}} - {{$city['zipCode']}} {{$city['city']}}" value="{{$city['name']}}">{{$city['name']}} - {{$city['city']}}</option>
                     @endforeach
                 </select>
             </div>
