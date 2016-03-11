@@ -148,13 +148,13 @@
                 </div>
                 <div class="container">
                     <div class="line">
-                        <span>30</span>pts - Lorem Ipsum
+                        <span>30</span>pts - un séjour d'une journée offert
                     </div>
                     <div class="line">
-                        <span>60</span>pts - Lorem Ipsum
+                        <span>60</span>pts - un séjour de 3 jours offert
                     </div>
                     <div class="line">
-                        <span>90</span>pts - Lorem Ipsum
+                        <span>90</span>pts - une semaine offerte
                     </div>
                 </div>
             </div>
